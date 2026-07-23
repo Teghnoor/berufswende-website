@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Berufswende – Ein zweites Standbein in deinem Tempo</title>
+<meta name="description" content="Persönliche Begleitung für Menschen, die ihren Berufsalltag nicht überstürzt verlassen, sondern Schritt für Schritt professionelle Online-Beratung lernen und eine neue berufliche Perspektive prüfen möchten.">
+<meta name="theme-color" content="#0B2426">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230B2426'/%3E%3Cpath d='M50 12 L57 43 L88 50 L57 57 L50 88 L43 57 L12 50 L43 43 Z' fill='%23C08457'/%3E%3C/svg%3E">
+
+<style>
+/* ============================================================
+   BERUFSWENDE — Design-System
+   ============================================================ */
+:root{
+  --petrol-950:#061A1D;
+  --petrol-900:#0B2426;
+  --petrol-850:#0E2A2C;
+  --petrol-800:#123234;
+  --petrol-700:#1A4342;
+
+  --copper:#C08457;
+  --copper-light:#D9A47C;
+  --copper-dark:#A96C46;
+  --sage:#A8BFB2;
+
+  --bone:#F6F1E8;
+  --bone-2:#EFE8DB;
+  --bone-3:#E6DCCB;
+  --ink:#132E2D;
+
+  --font-display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --font-sans:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --shell:min(1280px,calc(100% - 3rem));
+  --pad-y:clamp(5rem,10vw,9.5rem);
+  --radius:2px;
+
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--petrol-900);
+  color:var(--bone);
+  font-family:var(--font-sans);
+  font-weight:400;
+  font-size:clamp(1rem,.96rem + .2vw,1.0625rem);
+  line-height:1.68;
+  letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,blockquote,p{margin:0;text-wrap:pretty}
+h1,h2,h3,blockquote{text-wrap:balance}
+button{font:inherit;color:inherit}
+::selection{background:var(--copper);color:#04181B}
+
+/* ---------- Typo-Skala ---------- */
+.display{font-family:var(--font-display);font-weight:600;line-height:1.02;letter-spacing:-.015em}
+.t-hero{font-size:clamp(3rem,1.6rem + 6.2vw,6.25rem)}
+.t-section{font-size:clamp(2.1rem,1.4rem + 3.1vw,3.9rem);line-height:1.06}
+.t-feature{font-size:clamp(1.5rem,1.25rem + 1.1vw,2.15rem);line-height:1.14}
+.t-card{font-size:clamp(1.18rem,1.08rem + .42vw,1.45rem);line-height:1.24;font-family:var(--font-display);font-weight:600;letter-spacing:-.005em}
+em.accent{font-style:italic;font-weight:500;color:var(--copper-light)}
+.on-light em.accent{color:var(--copper-dark)}
+
+.kicker{
+  font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--copper-light);margin:0;
+}
+.on-light .kicker{color:var(--copper-dark)}
+.lede{font-size:clamp(1.05rem,1rem + .35vw,1.24rem);line-height:1.62;color:rgb(246 241 232 / .62)}
+.on-light .lede{color:rgb(19 46 45 / .64)}
+.muted{color:rgb(246 241 232 / .56)}
+.on-light .muted{color:rgb(19 46 45 / .6)}
+.num{font-family:var(--font-display);font-weight:500;font-variant-numeric:lining-nums;letter-spacing:.02em}
+
+/* ---------- Layout ---------- */
+.shell{width:var(--shell);margin-inline:auto}
+section{position:relative}
+.band{padding-block:var(--pad-y)}
+.band--light{background:var(--bone);color:var(--ink)}
+.band--light-2{background:var(--bone-2);color:var(--ink)}
+.band--dark{background:var(--petrol-900)}
+.band--deep{background:var(--petrol-950)}
+/* Benachbarte Bänder gleicher Helligkeit rücken zusammen */
+.on-light + .on-light{padding-top:clamp(3rem,6vw,5.5rem)}
+.on-light + .on-light::before{
+  content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);
+  width:var(--shell);height:1px;background:rgb(19 46 45 / .14);
+}
+
+.head-grid{
+  display:grid;gap:2.25rem;align-items:end;
+  grid-template-columns:1fr;
+}
+@media(min-width:900px){
+  .head-grid{grid-template-columns:1.25fr .75fr;gap:4rem}
+}
+
+/* ---------- Hairline-Raster ---------- */
+.grid-cards{
+  display:grid;grid-template-columns:1fr;
+  border-top:1px solid var(--line);border-left:1px solid var(--line);
+  --line:rgb(246 241 232 / .13);
+}
+.on-light .grid-cards{--line:rgb(19 46 45 / .14)}
+.grid-cards>*{
+  border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+  padding:clamp(1.6rem,1.2rem + 1.2vw,2.4rem);
+}
+@media(min-width:760px){.grid-2{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:760px){.grid-2x{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.grid-6{grid-template-columns:repeat(6,1fr)}}
+@media(min-width:560px){.grid-6{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  padding:1.02rem 1.5rem;border-radius:var(--radius);
+  font-size:.86rem;font-weight:600;letter-spacing:.02em;
+  border:1px solid transparent;cursor:pointer;
+  transition:background .45s var(--ease),color .45s var(--ease),border-color .45s var(--ease),transform .45s var(--ease);
+}
+.btn svg{flex:none;transition:transform .45s var(--ease)}
+.btn--primary{background:var(--copper);color:#08201F;border-color:var(--copper)}
+.btn--primary:hover{background:var(--copper-light);border-color:var(--copper-light)}
+.btn--primary:hover svg{transform:translate(3px,-3px)}
+.btn--ghost{border-color:rgb(246 241 232 / .26);color:var(--bone)}
+.btn--ghost:hover{border-color:var(--copper-light);color:var(--copper-light)}
+.btn--ghost:hover svg{transform:translateY(3px)}
+.on-light .btn--ghost{border-color:rgb(19 46 45 / .24);color:var(--ink)}
+.on-light .btn--ghost:hover{border-color:var(--copper-dark);color:var(--copper-dark)}
+:where(a,button,summary,input):focus-visible{
+  outline:2px solid var(--copper-light);outline-offset:3px;border-radius:1px;
+}
+
+/* ---------- Header ---------- */
+.header{
+  position:fixed;inset:0 0 auto;z-index:80;
+  transition:background .5s var(--ease),backdrop-filter .5s var(--ease),border-color .5s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.header[data-stuck="true"]{
+  background:rgb(6 26 29 / .88);backdrop-filter:blur(16px) saturate(140%);
+  border-bottom-color:rgb(246 241 232 / .12);
+}
+.header__bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:5rem}
+.progress{position:absolute;left:0;bottom:-1px;height:1px;background:var(--copper);width:0;transition:width .1s linear}
+
+.logo{display:flex;align-items:center;gap:.82rem}
+.logo__mark{width:44px;height:44px;flex:none}
+.logo__type{display:flex;flex-direction:column;line-height:1}
+.logo__name{font-family:var(--font-display);font-size:1.4rem;font-weight:600;letter-spacing:-.005em;color:var(--bone)}
+.logo__sub{font-size:.52rem;font-weight:600;letter-spacing:.36em;color:var(--sage);margin-top:.34rem}
+
+.nav{display:none;align-items:center;gap:2.1rem}
+@media(min-width:1080px){.nav{display:flex}}
+.nav a{
+  position:relative;font-size:.82rem;font-weight:500;letter-spacing:.02em;
+  color:rgb(246 241 232 / .72);padding-block:.4rem;transition:color .35s var(--ease);
+}
+.nav a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:var(--copper);transform:scaleX(0);transform-origin:left;
+  transition:transform .45s var(--ease);
+}
+.nav a:hover,.nav a[aria-current="true"]{color:var(--bone)}
+.nav a:hover::after,.nav a[aria-current="true"]::after{transform:scaleX(1)}
+
+.header__cta{display:none}
+@media(min-width:1080px){.header__cta{display:inline-flex}}
+.burger{
+  display:inline-flex;align-items:center;gap:.7rem;background:none;border:1px solid rgb(246 241 232 / .24);
+  padding:.7rem 1rem;border-radius:var(--radius);font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
+}
+@media(min-width:1080px){.burger{display:none}}
+.burger__lines{display:grid;gap:4px;width:16px}
+.burger__lines span{height:1px;background:currentColor;transition:transform .4s var(--ease),opacity .3s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+/* Mobile Drawer */
+.drawer{
+  position:fixed;inset:0;z-index:79;background:var(--petrol-950);
+  padding:6.5rem 0 3rem;overflow-y:auto;
+  opacity:0;visibility:hidden;transform:translateY(-1.25rem);
+  transition:opacity .45s var(--ease),transform .45s var(--ease),visibility .45s;
+}
+.drawer[data-open="true"]{opacity:1;visibility:visible;transform:none}
+.drawer__list{display:grid;gap:0;border-top:1px solid rgb(246 241 232 / .12);margin:2rem 0 2.5rem}
+.drawer__list a{
+  display:flex;align-items:baseline;gap:1.25rem;padding:1.15rem .25rem;
+  border-bottom:1px solid rgb(246 241 232 / .12);
+  font-family:var(--font-display);font-size:1.75rem;font-weight:500;
+}
+.drawer__list i{font-style:normal;font-size:.6rem;font-weight:700;letter-spacing:.16em;color:var(--copper);font-family:var(--font-sans);min-width:1.6rem}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;padding-top:clamp(8rem,14vh + 5rem,11rem);padding-bottom:clamp(4rem,7vw,6.5rem);
+  background:
+    radial-gradient(90rem 46rem at 78% -10%,rgb(26 67 66 / .85),transparent 62%),
+    radial-gradient(60rem 40rem at 8% 100%,rgb(192 132 87 / .10),transparent 60%),
+    var(--petrol-900);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgb(246 241 232 / .045) 1px,transparent 1px),linear-gradient(90deg,rgb(246 241 232 / .045) 1px,transparent 1px);
+  background-size:clamp(60px,7vw,110px) clamp(60px,7vw,110px);
+  mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent 78%);
+}
+.hero__grid{position:relative;display:grid;gap:clamp(3rem,5vw,4.5rem);align-items:center}
+@media(min-width:1024px){.hero__grid{grid-template-columns:1.06fr .94fr;gap:clamp(3rem,4.5vw,5rem)}}
+
+.eyebrow{display:flex;align-items:center;gap:1rem;font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgb(246 241 232 / .6)}
+.eyebrow::before{content:"";width:clamp(28px,4vw,56px);height:1px;background:var(--copper);flex:none}
+
+.pill{
+  display:inline-flex;align-items:center;gap:.6rem;margin-top:1.6rem;
+  font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);
+}
+.pill i{width:6px;height:6px;background:var(--copper);border-radius:50%;flex:none;box-shadow:0 0 0 0 rgb(192 132 87 / .55);animation:pulse 2.8s infinite}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgb(192 132 87 / .5)}
+  70%{box-shadow:0 0 0 9px rgb(192 132 87 / 0)}
+  100%{box-shadow:0 0 0 0 rgb(192 132 87 / 0)}
+}
+
+.hero h1{margin-top:1.5rem;max-width:11ch}
+.hero .lede{margin-top:1.9rem;max-width:46ch}
+.hero__actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2.4rem}
+.hero__note{margin-top:1.5rem;font-size:.78rem;color:rgb(246 241 232 / .5)}
+
+/* Prinzipien-Leiste */
+.principles{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  margin-top:clamp(3rem,6vw,4.75rem);background:rgb(246 241 232 / .13);
+  border-block:1px solid rgb(246 241 232 / .13);
+}
+.principles>div{background:var(--petrol-900);padding:1.5rem 1.25rem}
+.principles .v{font-family:var(--font-display);font-size:clamp(2rem,1.4rem + 2vw,2.9rem);font-weight:500;color:var(--copper-light);line-height:1}
+.principles .l{margin-top:.6rem;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgb(246 241 232 / .54)}
+
+/* VSL-Platz */
+.vsl{position:relative}
+.vsl__frame{
+  position:relative;aspect-ratio:16/10;border:1px solid rgb(246 241 232 / .16);
+  background:
+    radial-gradient(120% 100% at 70% 0%,rgb(26 67 66 / .9),transparent 60%),
+    linear-gradient(155deg,var(--petrol-800),var(--petrol-950));
+  display:grid;place-items:center;overflow:hidden;
+}
+.vsl__frame::after{
+  content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:radial-gradient(rgb(246 241 232 / .09) 1px,transparent 1px);
+  background-size:4px 4px;mask-image:linear-gradient(180deg,transparent,#000);
+}
+.vsl__tag{
+  position:absolute;top:1rem;left:1rem;z-index:2;display:inline-flex;align-items:center;gap:.5rem;
+  padding:.45rem .8rem;background:rgb(6 26 29 / .82);border:1px solid rgb(246 241 232 / .18);
+  font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);
+}
+.vsl__play{
+  position:relative;z-index:2;width:clamp(66px,7vw,86px);aspect-ratio:1;border-radius:50%;
+  border:1px solid rgb(246 241 232 / .3);background:rgb(6 26 29 / .5);backdrop-filter:blur(4px);
+  display:grid;place-items:center;cursor:pointer;transition:background .45s var(--ease),border-color .45s var(--ease),transform .45s var(--ease);
+}
+.vsl__play:hover{background:var(--copper);border-color:var(--copper);transform:scale(1.05)}
+.vsl__play svg{margin-left:3px}
+.vsl__caption{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.5rem;
+  background:linear-gradient(0deg,rgb(6 26 29 / .95),transparent);
+}
+.vsl__caption .k{font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--copper-light)}
+.vsl__caption .t{margin-top:.55rem;font-family:var(--font-display);font-size:clamp(1.15rem,1rem + .7vw,1.6rem);line-height:1.2;max-width:24ch}
+.vsl__meta{
+  display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;justify-content:space-between;align-items:center;
+  margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgb(246 241 232 / .14);
+  font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgb(246 241 232 / .5);
+}
+.vsl__meta span:last-child{display:inline-flex;align-items:center;gap:.5rem;color:var(--sage)}
+
+/* ---------- Karten ---------- */
+.card-top{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.6rem}
+.card-top .n{font-family:var(--font-display);font-size:1.5rem;color:var(--copper-light);line-height:1}
+.on-light .card-top .n{color:var(--copper-dark)}
+.card-top .k{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgb(246 241 232 / .52)}
+.on-light .card-top .k{color:rgb(19 46 45 / .55)}
+.card p{margin-top:1rem;font-size:.94rem;line-height:1.66}
+
+/* Methodik */
+.method{display:grid;gap:0}
+@media(min-width:820px){.method{grid-template-columns:repeat(2,1fr)}}
+.method>article{
+  padding:clamp(1.75rem,1.2rem + 1.6vw,2.75rem);
+  border-bottom:1px solid rgb(19 46 45 / .14);border-right:1px solid rgb(19 46 45 / .14);
+  position:relative;transition:background .5s var(--ease);
+}
+.method>article:hover{background:rgb(19 46 45 / .035)}
+.method>article::before{
+  content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--copper);
+  transition:width .7s var(--ease);
+}
+.method>article.is-in::before{width:100%}
+.method .roman{
+  font-family:var(--font-display);font-size:clamp(2.4rem,1.8rem + 2vw,3.4rem);
+  font-weight:400;line-height:.9;color:var(--copper-dark);
+}
+.method .dur{
+  display:inline-block;margin-top:.9rem;font-size:.6rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:rgb(19 46 45 / .5);
+}
+.method h3{margin-top:1.5rem;max-width:22ch;color:var(--ink)}
+.method p{margin-top:.95rem;max-width:52ch;font-size:.94rem;color:rgb(19 46 45 / .68)}
+
+/* Eignung */
+.fit{border-top:1px solid rgb(19 46 45 / .14)}
+.fit>article{
+  display:grid;gap:.5rem 2rem;align-items:baseline;
+  padding:1.5rem .25rem;border-bottom:1px solid rgb(19 46 45 / .14);
+  transition:padding-left .5s var(--ease);
+}
+@media(min-width:860px){
+  .fit>article{grid-template-columns:4rem 12rem 1fr;gap:2.5rem}
+  .fit>article:hover{padding-left:.9rem}
+}
+.fit .n{font-family:var(--font-display);font-size:1.35rem;color:var(--copper-dark)}
+.fit .l{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgb(19 46 45 / .5)}
+.fit h3{font-family:var(--font-display);font-size:clamp(1.15rem,1.05rem + .4vw,1.4rem);font-weight:600;line-height:1.24}
+.fit p{margin-top:.5rem;font-size:.92rem;color:rgb(19 46 45 / .64);max-width:62ch}
+
+/* Geschichte */
+.story{display:grid;gap:clamp(2.5rem,5vw,4.5rem);align-items:center}
+@media(min-width:1024px){.story{grid-template-columns:.92fr 1.08fr}}
+.story__visual{
+  position:relative;aspect-ratio:4/5;min-height:340px;overflow:hidden;
+  border:1px solid rgb(246 241 232 / .14);
+  background:
+    radial-gradient(80% 60% at 30% 20%,rgb(26 67 66 / .95),transparent 65%),
+    linear-gradient(160deg,var(--petrol-800),var(--petrol-950));
+  display:grid;place-items:center;
+}
+@media(min-width:1024px){.story__visual{aspect-ratio:auto;min-height:min(72vh,660px)}}
+.story__visual .compass{width:min(58%,300px);opacity:.34;filter:drop-shadow(0 0 60px rgb(192 132 87 / .25))}
+.story__visual .tag{
+  position:absolute;left:1.25rem;bottom:1.25rem;right:1.25rem;
+  font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:rgb(246 241 232 / .5);border-top:1px solid rgb(246 241 232 / .16);padding-top:.9rem;
+}
+.quote{
+  font-family:var(--font-display);font-size:clamp(1.5rem,1.2rem + 1.5vw,2.35rem);
+  font-weight:400;font-style:italic;line-height:1.22;color:var(--bone);
+  border-left:1px solid var(--copper);padding-left:1.5rem;margin-top:2.5rem;max-width:20ch;
+}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgb(246 241 232 / .14);border-block:1px solid rgb(246 241 232 / .14);margin-top:2.5rem}
+.stats>div{background:var(--petrol-950);padding:1.35rem 1rem}
+.stats .v{font-family:var(--font-display);font-size:clamp(1.7rem,1.3rem + 1.4vw,2.35rem);color:var(--copper-light);line-height:1}
+.stats .l{margin-top:.5rem;font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgb(246 241 232 / .52);line-height:1.4}
+
+/* Transparenz / offene Nachweise */
+.slots{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgb(19 46 45 / .14);border:1px solid rgb(19 46 45 / .14)}
+@media(min-width:640px){.slots{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1100px){.slots{grid-template-columns:repeat(6,1fr)}}
+.slots>div{
+  background:var(--bone-2);padding:1.4rem 1.15rem;min-height:132px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;
+  transition:background .45s var(--ease);
+}
+.slots>div:hover{background:var(--bone-3)}
+.slots .ty{font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgb(19 46 45 / .42)}
+.slots .lb{font-family:var(--font-display);font-size:1.08rem;font-weight:600;line-height:1.2;color:var(--ink)}
+.slots .st{display:inline-flex;align-items:center;gap:.45rem;font-size:.55rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--copper-dark)}
+.slots .st::before{content:"";width:5px;height:5px;border:1px solid currentColor;transform:rotate(45deg);flex:none}
+
+.cases{display:grid;gap:1px;background:rgb(19 46 45 / .14);border:1px solid rgb(19 46 45 / .14);margin-top:1.5rem}
+@media(min-width:760px){.cases{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1180px){.cases{grid-template-columns:repeat(4,1fr)}}
+.cases>article{background:var(--bone);padding:clamp(1.5rem,1.2rem + 1vw,2rem);display:flex;flex-direction:column;gap:1rem;min-height:270px}
+.cases .lb{font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--copper-dark)}
+.cases h3{font-family:var(--font-display);font-size:1.2rem;font-weight:600;line-height:1.24;margin-top:.35rem}
+.cases p{font-size:.87rem;line-height:1.6;color:rgb(19 46 45 / .62)}
+.cases .st{margin-top:auto;padding-top:1rem;border-top:1px solid rgb(19 46 45 / .14);font-size:.55rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgb(19 46 45 / .45)}
+
+.pledge{
+  display:grid;gap:2rem;align-items:center;margin-top:clamp(2.5rem,5vw,3.75rem);
+  padding-top:clamp(2.5rem,5vw,3.5rem);border-top:1px solid rgb(19 46 45 / .16);
+}
+@media(min-width:960px){.pledge{grid-template-columns:.8fr 1.2fr;gap:4rem}}
+
+/* Redaktion */
+.editorial{display:grid;gap:1px;background:rgb(19 46 45 / .14);border:1px solid rgb(19 46 45 / .14)}
+@media(min-width:900px){.editorial{grid-template-columns:1.4fr 1fr 1fr}}
+.editorial>article{
+  background:var(--bone-2);padding:clamp(1.6rem,1.2rem + 1.2vw,2.4rem);
+  display:flex;flex-direction:column;gap:1rem;min-height:290px;
+  transition:background .45s var(--ease);
+}
+.editorial>article:hover{background:var(--bone-3)}
+.editorial>article:first-child{min-height:360px}
+@media(min-width:900px){
+  .editorial>article:first-child{grid-row:span 2;justify-content:flex-end}
+}
+.editorial .ty{font-size:.57rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--copper-dark)}
+.editorial h3{font-family:var(--font-display);font-size:clamp(1.2rem,1.08rem + .55vw,1.7rem);font-weight:600;line-height:1.18;max-width:22ch}
+.editorial>article:first-child h3{font-size:clamp(1.6rem,1.3rem + 1.4vw,2.5rem)}
+.editorial p{font-size:.88rem;line-height:1.62;color:rgb(19 46 45 / .62);max-width:46ch}
+.editorial .foot{
+  margin-top:auto;padding-top:1.1rem;border-top:1px solid rgb(19 46 45 / .16);
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgb(19 46 45 / .48);
+}
+
+/* FAQ */
+.faq{border-top:1px solid rgb(19 46 45 / .16)}
+.faq details{border-bottom:1px solid rgb(19 46 45 / .16)}
+.faq summary{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;
+  padding:1.5rem .25rem;cursor:pointer;list-style:none;
+  font-family:var(--font-display);font-size:clamp(1.15rem,1.05rem + .5vw,1.5rem);font-weight:600;line-height:1.28;
+  transition:color .4s var(--ease);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--copper-dark)}
+.faq .ico{position:relative;flex:none;width:18px;height:18px;margin-top:.45rem}
+.faq .ico::before,.faq .ico::after{content:"";position:absolute;background:var(--copper-dark);transition:transform .45s var(--ease),opacity .3s}
+.faq .ico::before{left:0;right:0;top:50%;height:1px;transform:translateY(-50%)}
+.faq .ico::after{top:0;bottom:0;left:50%;width:1px;transform:translateX(-50%)}
+.faq details[open] .ico::after{transform:translateX(-50%) rotate(90deg);opacity:0}
+.faq .ans{overflow:hidden}
+.faq .ans p{padding:0 .25rem 1.75rem;max-width:76ch;font-size:.96rem;line-height:1.7;color:rgb(19 46 45 / .68)}
+@media(min-width:860px){.faq .ans p{padding-right:5rem}}
+
+/* Abschluss */
+.close-grid{display:grid;gap:clamp(3rem,6vw,5rem);align-items:start}
+@media(min-width:1024px){.close-grid{grid-template-columns:1fr 1fr;gap:clamp(3rem,5vw,6rem)}}
+.steps{display:grid;gap:0;border-top:1px solid rgb(246 241 232 / .14);margin-top:2.5rem}
+.steps>div{
+  display:grid;grid-template-columns:3rem 1fr;gap:1.5rem;align-items:start;
+  padding:1.5rem 0;border-bottom:1px solid rgb(246 241 232 / .14);
+}
+.steps .n{font-family:var(--font-display);font-size:1.5rem;color:var(--copper-light);line-height:1.1}
+.steps h3{font-family:var(--font-display);font-size:1.3rem;font-weight:600;line-height:1.25}
+.steps p{margin-top:.5rem;font-size:.9rem;color:rgb(246 241 232 / .6);max-width:48ch}
+
+.form-card{
+  background:var(--petrol-950);border:1px solid rgb(246 241 232 / .16);
+  padding:clamp(1.75rem,1.2rem + 2vw,3rem);position:relative;overflow:hidden;
+}
+.form-card::before{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,var(--copper),transparent)}
+.field{display:grid;gap:.55rem;margin-top:1.4rem}
+.field label{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgb(246 241 232 / .58)}
+.field input{
+  width:100%;padding:.95rem 1rem;background:rgb(246 241 232 / .04);
+  border:1px solid rgb(246 241 232 / .18);border-radius:var(--radius);
+  color:var(--bone);font-family:inherit;font-size:.95rem;
+  transition:border-color .4s var(--ease),background .4s var(--ease);
+}
+.field input::placeholder{color:rgb(246 241 232 / .3)}
+.field input:focus{outline:none;border-color:var(--copper);background:rgb(246 241 232 / .07)}
+.form-card .btn{width:100%;margin-top:1.9rem}
+.form-note{margin-top:1.25rem;font-size:.74rem;line-height:1.6;color:rgb(246 241 232 / .46)}
+.form-status{
+  margin-top:1rem;font-size:.8rem;color:var(--sage);
+  border-left:1px solid var(--copper);padding-left:.85rem;display:none;
+}
+.form-status[data-show="true"]{display:block}
+
+/* Footer */
+.footer{background:var(--petrol-950);padding-block:clamp(3.5rem,6vw,5rem) 2.5rem;border-top:1px solid rgb(246 241 232 / .12)}
+.footer__grid{display:grid;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid rgb(246 241 232 / .12)}
+@media(min-width:860px){.footer__grid{grid-template-columns:1.5fr .8fr .8fr;gap:3rem}}
+.footer__claim{margin-top:1.6rem;font-family:var(--font-display);font-size:clamp(1.4rem,1.2rem + .8vw,1.9rem);line-height:1.18;color:rgb(246 241 232 / .86);max-width:24ch}
+.footer h4{font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--copper-light)}
+.footer nav{display:grid;gap:.85rem;margin-top:1.4rem}
+.footer nav a{font-size:.88rem;color:rgb(246 241 232 / .62);transition:color .35s var(--ease)}
+.footer nav a:hover{color:var(--bone)}
+.footer__bottom{
+  display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:center;
+  padding-top:2rem;font-size:.72rem;color:rgb(246 241 232 / .42);
+}
+
+/* Scroll-Reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.is-in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+.skip{
+  position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--copper);color:#08201F;
+  padding:.75rem 1.1rem;font-size:.8rem;font-weight:600;transition:top .3s var(--ease);
+}
+.skip:focus{top:1rem}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#warum">Zum Inhalt springen</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header" id="header">
+  <div class="shell header__bar">
+    <a href="#start" class="logo" aria-label="Berufswende — zum Seitenanfang">
+      <svg class="logo__mark" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="1" y="1" width="98" height="98" rx="17" fill="#0B2426" stroke="#A96C46" stroke-width="2.5"/>
+        <path d="M100 100 H72 V72 H100 Z" fill="#A96C46" transform="translate(-18,-18) scale(1)" opacity="0"/>
+        <path d="M82 99 H66 a17 17 0 0 0 17-17 Z" fill="#B87D5A"/>
+        <path d="M50 14 L57 44 L50 50 Z" fill="#C08457"/>
+        <path d="M50 14 L43 44 L50 50 Z" fill="#9A6742"/>
+        <path d="M50 86 L43 56 L50 50 Z" fill="#C08457"/>
+        <path d="M50 86 L57 56 L50 50 Z" fill="#9A6742"/>
+        <path d="M14 50 L44 43 L50 50 Z" fill="#C08457"/>
+        <path d="M14 50 L44 57 L50 50 Z" fill="#9A6742"/>
+        <path d="M86 50 L56 57 L50 50 Z" fill="#C08457"/>
+        <path d="M86 50 L56 43 L50 50 Z" fill="#9A6742"/>
+        <path d="M57 44 L86 50 L56 43 Z" fill="#2C4B4A"/>
+        <path d="M43 56 L14 50 L44 57 Z" fill="#2C4B4A"/>
+        <rect x="47.5" y="47.5" width="5" height="5" fill="#0B2426"/>
+      </svg>
+      <span class="logo__type">
+        <span class="logo__name">Berufswende</span>
+        <span class="logo__sub">BERATUNG</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#warum">Warum jetzt</a>
+      <a href="#methodik">Methodik</a>
+      <a href="#eignung">Eignung</a>
+      <a href="#geschichte">Über uns</a>
+      <a href="#transparenz">Transparenz</a>
+      <a href="#fragen">Fragen</a>
+    </nav>
+
+    <a href="#vorgespraech" class="btn btn--primary header__cta">
+      Vorgespräch sichern
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10 L10 2 M4 2h6v6" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Menü öffnen">
+      <span class="burger__lines"><span></span><span></span><span></span></span>
+      Menü
+    </button>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<!-- ===================== DRAWER ===================== -->
+<div class="drawer" id="drawer" data-open="false">
+  <div class="shell">
+    <p class="kicker">Menü / Route 01—06</p>
+    <p class="lede" style="margin-top:.9rem;max-width:34ch">Direkt zu den wichtigsten Entscheidungspunkten.</p>
+    <nav class="drawer__list" aria-label="Mobile Navigation">
+      <a href="#warum"><i>01</i>Warum jetzt</a>
+      <a href="#methodik"><i>02</i>Methodik</a>
+      <a href="#eignung"><i>03</i>Eignung</a>
+      <a href="#geschichte"><i>04</i>Über uns</a>
+      <a href="#transparenz"><i>05</i>Transparenz</a>
+      <a href="#fragen"><i>06</i>Fragen</a>
+    </nav>
+    <a href="#vorgespraech" class="btn btn--primary" style="width:100%">
+      Vorgespräch sichern
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10 L10 2 M4 2h6v6" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+    <p class="muted" style="margin-top:1.25rem;font-size:.78rem">Kostenfrei, unverbindlich und ohne Entscheidungsdruck.</p>
+  </div>
+</div>
+
+<main>
+
+<!-- ===================== 01 · HERO ===================== -->
+<section id="start" class="hero">
+  <div class="shell">
+    <div class="hero__grid">
+
+      <div>
+        <p class="eyebrow">Begleitung · Berufliche Neuausrichtung</p>
+        <p class="pill"><i></i> Vorgespräche aktiv</p>
+
+        <h1 class="display t-hero">Ein zweites Standbein. <em class="accent">In deinem Tempo.</em></h1>
+
+        <p class="lede">Persönliche Begleitung für Menschen, die ihren Berufsalltag nicht überstürzt verlassen, sondern Schritt für Schritt professionelle Online-Beratung lernen und eine neue berufliche Perspektive prüfen möchten.</p>
+
+        <div class="hero__actions">
+          <a href="#vorgespraech" class="btn btn--primary">
+            Vorgespräch sichern
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10 L10 2 M4 2h6v6" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <a href="#methodik" class="btn btn--ghost">
+            So arbeitet Berufswende
+            <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true"><path d="M6 1v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+        </div>
+
+        <p class="hero__note">Kostenfrei, unverbindlich und ohne Entscheidungsdruck.</p>
+      </div>
+
+      <div class="vsl reveal">
+        <div class="vsl__frame">
+          <span class="vsl__tag">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M8 6l3-2v4l-3-2Z" fill="currentColor"/></svg>
+            VSL · Video ausstehend
+          </span>
+          <button class="vsl__play" type="button" aria-label="Video abspielen — Einbindung vorbereitet">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor" aria-hidden="true"><path d="M0 0v22l20-11L0 0Z"/></svg>
+          </button>
+          <div class="vsl__caption">
+            <p class="k">Berufswende im Gespräch</p>
+            <p class="t">Wie ein kontrollierter beruflicher Aufbau aussehen kann.</p>
+          </div>
+        </div>
+        <div class="vsl__meta">
+          <span>VSL-Status · Einbindung vorbereitet</span>
+          <span>
+            <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true"><path d="M6 1 11 3v4c0 3-2 5.4-5 6-3-.6-5-3-5-6V3l5-2Z" stroke="currentColor" stroke-width="1.1"/></svg>
+            Laufzeit nach Freigabe
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Prinzipien statt leerer Nachweis-Kacheln -->
+    <div class="principles reveal">
+      <div><p class="v num">1:1</p><p class="l">Persönliche Rückmeldung</p></div>
+      <div><p class="v num">IV</p><p class="l">Klar definierte Etappen</p></div>
+      <div><p class="v num">0</p><p class="l">Erfolgsversprechen</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 02 · WARUM ===================== -->
+<section id="warum" class="band band--deep" aria-labelledby="warum-title">
+  <div class="shell">
+    <div class="head-grid reveal">
+      <h2 id="warum-title" class="display t-section" style="max-width:23ch">Warum professionelle Online-Beratung ein <em class="accent">realistisch prüfbarer</em> nächster Weg sein kann.</h2>
+      <div>
+        <p class="kicker">Warum jetzt</p>
+        <p class="lede" style="margin-top:1.1rem;max-width:32ch">Drei Gründe für einen kontrollierten Aufbau neben dem bestehenden Beruf.</p>
+      </div>
+    </div>
+
+    <div class="grid-cards grid-3 reveal" style="margin-top:clamp(3rem,6vw,5rem)">
+      <article class="card">
+        <div class="card-top"><span class="n num">01</span><span class="k">Sicherheit</span></div>
+        <h3 class="t-card">Du kannst prüfen, bevor du wechselst.</h3>
+        <p class="muted">Der Aufbau beginnt neben deinem bestehenden Beruf. Du sammelst reale Lernerfahrung, bevor du entscheidest, welchen Platz die neue Tätigkeit in deinem Leben einnehmen soll.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="n num">02</span><span class="k">Alltag</span></div>
+        <h3 class="t-card">Du lernst ortsunabhängig und in planbaren Etappen.</h3>
+        <p class="muted">Laptop, Telefon und verlässliche Zeitfenster reichen für den Lernweg aus. Dein Alltag wird nicht für ein Versprechen aufgegeben, sondern bildet den realistischen Rahmen des Aufbaus.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="n num">03</span><span class="k">Kompetenz</span></div>
+        <h3 class="t-card">Du entwickelst eine übertragbare Gesprächskompetenz.</h3>
+        <p class="muted">Bedarf verstehen, klare Fragen stellen, Einwände einordnen und Entscheidungen sauber begleiten: Diese Fähigkeiten lassen sich trainieren und in unterschiedlichen beruflichen Kontexten einsetzen.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 03 · METHODIK ===================== -->
+<section id="methodik" class="band band--light on-light" aria-labelledby="methodik-title">
+  <div class="shell">
+    <div class="head-grid reveal">
+      <h2 id="methodik-title" class="display t-section" style="max-width:21ch">So wird aus Orientierung eine <em class="accent">belastbare Entscheidung.</em></h2>
+      <div>
+        <p class="kicker">Methodik</p>
+        <p class="lede" style="margin-top:1.1rem;max-width:30ch">Vier Etappen. Eine klare Richtung. Keine zweite Prozessdarstellung.</p>
+      </div>
+    </div>
+
+    <div class="method reveal" style="margin-top:clamp(3rem,6vw,5rem);border-top:1px solid rgb(19 46 45 / .14);border-left:1px solid rgb(19 46 45 / .14)">
+      <article>
+        <p class="roman">I</p>
+        <p class="dur">Vorgespräch</p>
+        <h3 class="t-card">Passung gemeinsam prüfen</h3>
+        <p>Wir sprechen über deine Ausgangslage, dein Ziel, deine verfügbare Zeit und deine Fragen. Erst wenn der Weg sinnvoll wirkt, folgt der nächste Schritt.</p>
+      </article>
+      <article>
+        <p class="roman">II</p>
+        <p class="dur">Grundlagen</p>
+        <h3 class="t-card">Gesprächsführung strukturiert lernen</h3>
+        <p>Du entwickelst einen klaren Gesprächsrahmen, lernst Bedarf zu verstehen und begleitest Entscheidungen ohne Druck oder auswendig gelernte Tricks.</p>
+      </article>
+      <article>
+        <p class="roman">III</p>
+        <p class="dur">Praxis</p>
+        <h3 class="t-card">Gespräche begleitet trainieren</h3>
+        <p>Übungen, Analysen und direkte Rückmeldung machen aus Theorie eine belastbare Routine. Unsicherheiten werden konkret besprochen statt allein gelassen.</p>
+      </article>
+      <article>
+        <p class="roman">IV</p>
+        <p class="dur">Anwendung</p>
+        <h3 class="t-card">Die Tätigkeit eigenständig festigen</h3>
+        <p>Du entwickelst deinen Arbeitsrhythmus weiter und entscheidest fundiert, welchen Platz Online-Beratung in deiner beruflichen Zukunft einnehmen soll.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 04 · EIGNUNG ===================== -->
+<section id="eignung" class="band band--light-2 on-light" aria-labelledby="eignung-title">
+  <div class="shell">
+    <div class="head-grid reveal">
+      <h2 id="eignung-title" class="display t-section" style="max-width:16ch">Passt dieser Weg wirklich <em class="accent">zu dir?</em></h2>
+      <div>
+        <p class="kicker">Eignung</p>
+        <p class="lede" style="margin-top:1.1rem;max-width:48ch">Nicht jede Ausgangslage passt. Die sechs Kriterien machen sichtbar, wann ein Gespräch sinnvoll ist — und wann ein anderer Weg ehrlicher wäre.</p>
+      </div>
+    </div>
+
+    <div class="fit reveal" style="margin-top:clamp(3rem,6vw,4.5rem)">
+      <article>
+        <span class="n num">01</span><span class="l">Ausgangslage</span>
+        <div>
+          <h3>Du bist volljährig und entscheidest eigenständig.</h3>
+          <p>Du suchst einen planbaren beruflichen Aufbau und keine kurzfristige Lösung für eine akute finanzielle Notlage.</p>
+        </div>
+      </article>
+      <article>
+        <span class="n num">02</span><span class="l">Absicht</span>
+        <div>
+          <h3>Du willst dir ein echtes zweites Standbein erarbeiten.</h3>
+          <p>Nicht über Nacht, sondern mit einer Fähigkeit, die du verantwortungsvoll und dauerhaft einsetzen kannst.</p>
+        </div>
+      </article>
+      <article>
+        <span class="n num">03</span><span class="l">Umsetzung</span>
+        <div>
+          <h3>Du folgst lieber einem klaren Weg als hundert Abkürzungen.</h3>
+          <p>Du bist bereit, Schritt für Schritt zu lernen, Aufgaben umzusetzen und ehrliches Feedback anzunehmen.</p>
+        </div>
+      </article>
+      <article>
+        <span class="n num">04</span><span class="l">Kommunikation</span>
+        <div>
+          <h3>Du sprichst klar und hörst aufmerksam zu.</h3>
+          <p>Du musst noch kein Beratungsprofi sein. Entscheidend ist, dass du deine Gesprächsführung bewusst weiterentwickeln willst.</p>
+        </div>
+      </article>
+      <article>
+        <span class="n num">05</span><span class="l">Zeit</span>
+        <div>
+          <h3>Du reservierst regelmäßige, verbindliche Zeitfenster.</h3>
+          <p>Konzentrierte Arbeitszeiten an mehreren Tagen sind hilfreicher als Lernen irgendwann zwischen anderen Aufgaben.</p>
+        </div>
+      </article>
+      <article>
+        <span class="n num">06</span><span class="l">Ziel</span>
+        <div>
+          <h3>Du möchtest mehr Kontrolle über deine berufliche Richtung.</h3>
+          <p>Du bist bereit, Verantwortung für den Aufbau zu übernehmen und Entscheidungen auf Basis echter Erfahrung zu treffen.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="reveal" style="margin-top:2.75rem">
+      <a href="#vorgespraech" class="btn btn--ghost">
+        Eignung prüfen lassen
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10 L10 2 M4 2h6v6" stroke="currentColor" stroke-width="1.4"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 05 · GESCHICHTE ===================== -->
+<section id="geschichte" class="band band--deep" aria-labelledby="geschichte-title">
+  <div class="shell">
+    <div class="story">
+
+      <div class="story__visual reveal">
+        <svg class="compass" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M50 4 L57 44 L50 50 Z" fill="#C08457"/><path d="M50 4 L43 44 L50 50 Z" fill="#7C5537"/>
+          <path d="M50 96 L43 56 L50 50 Z" fill="#C08457"/><path d="M50 96 L57 56 L50 50 Z" fill="#7C5537"/>
+          <path d="M4 50 L44 43 L50 50 Z" fill="#C08457"/><path d="M4 50 L44 57 L50 50 Z" fill="#7C5537"/>
+          <path d="M96 50 L56 57 L50 50 Z" fill="#C08457"/><path d="M96 50 L56 43 L50 50 Z" fill="#7C5537"/>
+        </svg>
+        <p class="tag">Bildliche Platzhalterdarstellung einer ruhigen Beratungssituation — finales Bildmaterial folgt nach Freigabe.</p>
+      </div>
+
+      <div class="reveal">
+        <p class="kicker">Die Geschichte hinter Berufswende</p>
+        <h2 id="geschichte-title" class="display t-section" style="margin-top:1.4rem;max-width:18ch">Warum es Berufswende <em class="accent">überhaupt gibt.</em></h2>
+
+        <p class="lede" style="margin-top:2rem;max-width:54ch">Der Wunsch nach beruflicher Veränderung ist oft leiser, als Werbung vermuten lässt: mehr Einfluss auf die eigene Zeit, mehr Klarheit in der täglichen Arbeit und eine Richtung, die zum eigenen Leben passt.</p>
+
+        <blockquote class="quote">„Nicht schneller entscheiden. Sondern klarer sehen.“</blockquote>
+
+        <div class="stats">
+          <div><p class="v num">1:1</p><p class="l">persönliche Rückmeldung</p></div>
+          <div><p class="v num">IV</p><p class="l">klar definierte Etappen</p></div>
+          <div><p class="v num">0</p><p class="l">Erfolgsversprechen</p></div>
+        </div>
+
+        <div style="margin-top:2.5rem">
+          <p class="kicker">Gründung &amp; Haltung</p>
+          <h3 class="display t-feature" style="margin-top:1rem">Substanz vor Außenwirkung.</h3>
+          <p class="muted" style="margin-top:1.1rem;max-width:56ch;font-size:.95rem">Die persönliche Gründungsgeschichte, der fachliche Hintergrund und alle Qualifikationsangaben werden ergänzt, sobald die finalen Anbieterinformationen geprüft und freigegeben sind.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 06 · TRANSPARENZ (Trust + Stimmen gebündelt) ===================== -->
+<section id="transparenz" class="band band--light on-light" aria-labelledby="transparenz-title">
+  <div class="shell">
+    <div class="head-grid reveal">
+      <h2 id="transparenz-title" class="display t-section" style="max-width:17ch">Nachweise, die wirklich <em class="accent">belegt</em> sind.</h2>
+      <div>
+        <p class="kicker">Vertrauen</p>
+        <p class="lede" style="margin-top:1.1rem;max-width:46ch">Keine Bewertungsplattform, Pressemarke oder Auszeichnung wird veröffentlicht, bevor ein realer Nachweis geprüft und freigegeben wurde.</p>
+      </div>
+    </div>
+
+    <!-- Offene Nachweisplätze -->
+    <div class="reveal" style="margin-top:clamp(2.5rem,5vw,4rem)">
+      <p class="kicker" style="color:rgb(19 46 45 / .45)">Offene Nachweisplätze</p>
+      <div class="slots" style="margin-top:1.25rem">
+        <div><p class="ty">Bewertung</p><p class="lb">Plattformnachweis</p><p class="st">Nachweis offen</p></div>
+        <div><p class="ty">Presse</p><p class="lb">Fachmedium</p><p class="st">Freigabe offen</p></div>
+        <div><p class="ty">Profil</p><p class="lb">Anbieterprofil</p><p class="st">Nachweis offen</p></div>
+        <div><p class="ty">Netzwerk</p><p class="lb">Partnernachweis</p><p class="st">Freigabe offen</p></div>
+        <div><p class="ty">Stimmen</p><p class="lb">Kundenmaterial</p><p class="st">Material offen</p></div>
+        <div><p class="ty">Qualifikation</p><p class="lb">Fachnachweis</p><p class="st">Nachweis offen</p></div>
+      </div>
+    </div>
+
+    <!-- Vorgesehene Falldokumentationen -->
+    <div class="reveal" style="margin-top:clamp(2.5rem,5vw,3.5rem)">
+      <div style="display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:baseline">
+        <p class="kicker" style="color:rgb(19 46 45 / .45)">Vorgesehene Falldokumentationen</p>
+        <p class="muted" style="font-size:.82rem;max-width:52ch">Diese Medienplätze folgen der Referenzstruktur vollständig. Reale Namen, Videos, Regionen und Ergebnisse erscheinen erst nach dokumentierter Prüfung und Veröffentlichungserlaubnis.</p>
+      </div>
+
+      <div class="cases">
+        <article>
+          <div><p class="lb">01 · Quereinstieg</p><h3>Vom bestehenden Beruf in einen kontrollierten Lernweg.</h3></div>
+          <p>Vorgesehener Dokumentationsfokus: Ausgangslage, verfügbare Zeit, erste Lernschritte und persönliche Entscheidung nach der Erprobung.</p>
+          <p class="st">Verifizierte Falldaten ausstehend</p>
+        </article>
+        <article>
+          <div><p class="lb">02 · Familie &amp; Beruf</p><h3>Berufliche Entwicklung mit bestehenden Verpflichtungen.</h3></div>
+          <p>Vorgesehener Dokumentationsfokus: Tagesrhythmus, realistische Zeitfenster, Begleitung und der Umgang mit familiärer Verantwortung.</p>
+          <p class="st">Verifizierte Falldaten ausstehend</p>
+        </article>
+        <article>
+          <div><p class="lb">03 · Kommunikation</p><h3>Aus Menschenkenntnis wird ein professioneller Gesprächsrahmen.</h3></div>
+          <p>Vorgesehener Dokumentationsfokus: vorhandene Stärken, trainierte Gesprächsschritte, Rückmeldung und beobachtbare Lernfortschritte.</p>
+          <p class="st">Verifizierte Falldaten ausstehend</p>
+        </article>
+        <article>
+          <div><p class="lb">04 · Zweites Standbein</p><h3>Erst praktisch prüfen, dann bewusst entscheiden.</h3></div>
+          <p>Vorgesehener Dokumentationsfokus: Motivation, Praxiserfahrung, Passungsprüfung und die daraus abgeleitete berufliche Entscheidung.</p>
+          <p class="st">Verifizierte Falldaten ausstehend</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- Haltung -->
+    <div class="pledge reveal">
+      <h3 class="display t-feature">Was noch nicht belegt ist, wird nicht behauptet.</h3>
+      <div>
+        <p class="lede">Transparenz über offene Nachweise gehört zur Arbeitsweise und nicht ins Kleingedruckte. Biografie und Qualifikationen werden vor Veröffentlichung personenbezogener Angaben vollständig verifiziert.</p>
+        <p class="muted" style="margin-top:1.25rem;font-size:.86rem">Namen, Videos und Ergebnisse werden erst nach dokumentierter Freigabe veröffentlicht.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 07 · REDAKTION ===================== -->
+<section id="redaktion" class="band band--light-2 on-light" aria-labelledby="redaktion-title">
+  <div class="shell">
+    <div class="head-grid reveal">
+      <h2 id="redaktion-title" class="display t-section" style="max-width:21ch">Was du vor einer Entscheidung <em class="accent">wissen solltest.</em></h2>
+      <div>
+        <p class="kicker">Redaktion</p>
+        <p class="lede" style="margin-top:1.1rem;max-width:34ch">Eigene vorbereitete Inhalte statt übernommener Pressewirkung.</p>
+      </div>
+    </div>
+
+    <div class="editorial reveal" style="margin-top:clamp(3rem,6vw,4.5rem)">
+      <article>
+        <p class="ty">Leitfaden</p>
+        <h3>Woran du seriöse Begleitung erkennst</h3>
+        <p>Sechs Fragen, die du stellen solltest, bevor du Zeit, Vertrauen oder Geld in eine berufliche Begleitung investierst.</p>
+        <div class="foot"><span>6 Min. Lesezeit</span><span>Beitrag vorbereitet</span></div>
+      </article>
+      <article>
+        <p class="ty">Quereinstieg</p>
+        <h3>Warum ein kontrollierter Aufbau oft mehr trägt</h3>
+        <p>Wie du eine neue Tätigkeit neben deinem Beruf prüfst, statt deine Sicherheit für ein Versprechen aufzugeben.</p>
+        <div class="foot"><span>5 Min. Lesezeit</span><span>Beitrag vorbereitet</span></div>
+      </article>
+      <article>
+        <p class="ty">Gesprächsführung</p>
+        <h3>Gute Beratung beginnt nicht mit Überreden</h3>
+        <p>Warum klare Fragen, echtes Zuhören und transparente Grenzen die Grundlage professioneller Gespräche bilden.</p>
+        <div class="foot"><span>7 Min. Lesezeit</span><span>Beitrag vorbereitet</span></div>
+      </article>
+      <article>
+        <p class="ty">Entscheidung</p>
+        <h3>Welche Fragen in ein gutes Vorgespräch gehören</h3>
+        <p>Ein kompakter Fragenkatalog für Ziele, Zeit, Arbeitsweise, Begleitung und eine bewusste nächste Entscheidung.</p>
+        <div class="foot"><span>4 Min. Lesezeit</span><span>Beitrag vorbereitet</span></div>
+      </article>
+      <article>
+        <p class="ty">Hinweis</p>
+        <h3>Dieser redaktionelle Beitrag ist vorbereitet.</h3>
+        <p>Der finale Fachinhalt kann hier später direkt verknüpft werden.</p>
+        <div class="foot"><span>Inhalt offen</span><span>—</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 08 · FRAGEN ===================== -->
+<section id="fragen" class="band band--light on-light" aria-labelledby="fragen-title">
+  <div class="shell">
+    <div class="head-grid reveal">
+      <h2 id="fragen-title" class="display t-section" style="max-width:14ch">Häufig gestellte <em class="accent">Fragen.</em></h2>
+      <div>
+        <p class="kicker">FAQ</p>
+        <p class="lede" style="margin-top:1.1rem;max-width:38ch">Was du vor einer Entscheidung wissen solltest — offen beantwortet, auch dort, wo Angaben noch ausstehen.</p>
+      </div>
+    </div>
+
+    <div class="faq reveal" style="margin-top:clamp(3rem,6vw,4.5rem)">
+      <details open>
+        <summary>Kommen im Vorgespräch versteckte Kosten auf mich zu?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="ans"><p>Nein. Das Vorgespräch ist kostenfrei und unverbindlich. Ob danach eine Zusammenarbeit sinnvoll ist und welche Konditionen gelten, wird vor jeder Entscheidung transparent besprochen.</p></div>
+      </details>
+      <details>
+        <summary>Was genau ist Berufswende?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="ans"><p>Berufswende ist als persönliche Begleitung für Erwachsene konzipiert, die sich Schritt für Schritt ein zweites berufliches Standbein in der digitalen Beratung aufbauen möchten. Im Mittelpunkt stehen strukturierte Gesprächsführung, begleitete Übung und ehrliche Rückmeldung — keine anonyme Selbstlern-Plattform.</p></div>
+      </details>
+      <details>
+        <summary>Wer begleitet mich bei Berufswende?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="ans"><p>Die echte Anbieterbiografie, Qualifikationen und Verantwortlichkeiten werden vor dem finalen Livebetrieb vollständig und überprüfbar ergänzt. Bis dahin macht die Seite an keiner Stelle unbelegte Erfahrungs- oder Kompetenzangaben.</p></div>
+      </details>
+      <details>
+        <summary>Warum eignet sich Online-Beratung als zweites Standbein?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="ans"><p>Der dargestellte Weg lässt sich in planbaren Zeitfenstern mit Laptop und Telefon erproben. Du entwickelst konkrete Gesprächskompetenz und prüfst in der Praxis, ob diese Tätigkeit zu deinem Alltag und deinen beruflichen Zielen passt.</p></div>
+      </details>
+      <details>
+        <summary>Wann kann ich mit ersten Fortschritten rechnen?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="ans"><p>Das hängt von deiner Ausgangslage, deiner verfügbaren Zeit und der Qualität deiner Übung ab. Seriös lässt sich kein fester Zeitpunkt garantieren. Im Vorgespräch erhältst du eine realistische Einschätzung zum Ablauf — ohne Erfolgs- oder Einkommensversprechen.</p></div>
+      </details>
+      <details>
+        <summary>Warum wird meine Telefonnummer benötigt?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="ans"><p>Damit wir dich für das angefragte Vorgespräch persönlich erreichen können. Der Rückruf erfolgt ausschließlich zur Kontaktaufnahme; kein Spam und keine Weitergabe. Vor dem echten Livebetrieb wird das Formular mit finaler Datenschutzerklärung und technischer Übermittlung ergänzt.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 09 · VORGESPRÄCH ===================== -->
+<section id="vorgespraech" class="band band--dark" aria-labelledby="vorgespraech-title">
+  <div class="shell">
+    <div class="close-grid">
+
+      <div class="reveal">
+        <p class="kicker">Kostenfreies Vorgespräch</p>
+        <h2 id="vorgespraech-title" class="display t-section" style="margin-top:1.4rem;max-width:18ch">Prüfen wir gemeinsam, ob dieser Weg <em class="accent">zu dir passt.</em></h2>
+        <p class="lede" style="margin-top:1.8rem;max-width:52ch">Ein ruhiges Telefonat über deine Situation, dein Ziel und deine verfügbare Zeit. Kein Entscheidungsdruck — nur eine klare Einschätzung, ob ein nächster Schritt sinnvoll ist.</p>
+
+        <p class="kicker" style="margin-top:clamp(2.5rem,5vw,3.5rem)">Deine nächsten drei Schritte</p>
+        <p class="muted" style="margin-top:.9rem;max-width:44ch;font-size:.92rem">Anfragen, gemeinsam prüfen und nur bei beidseitiger Passung starten.</p>
+
+        <div class="steps">
+          <div>
+            <span class="n num">01</span>
+            <div>
+              <h3>Vorgespräch anfragen</h3>
+              <p>Du öffnest das Formular und hinterlässt Name, E-Mail und Telefonnummer für einen persönlichen Rückruf.</p>
+            </div>
+          </div>
+          <div>
+            <span class="n num">02</span>
+            <div>
+              <h3>Ausgangslage prüfen</h3>
+              <p>In einem ruhigen Telefonat klären wir dein Ziel, deine verfügbare Zeit und ob der Weg grundsätzlich zu dir passt.</p>
+            </div>
+          </div>
+          <div>
+            <span class="n num">03</span>
+            <div>
+              <h3>Bewusst starten</h3>
+              <p>Nur wenn beide Seiten die Zusammenarbeit für sinnvoll halten, besprechen wir transparent den möglichen nächsten Schritt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="form-card">
+          <p class="kicker">Vorgespräch anfragen</p>
+          <h3 class="display t-feature" style="margin-top:1rem">Ruhiges persönliches Telefonat</h3>
+          <p class="muted" style="margin-top:1rem;font-size:.92rem;max-width:44ch">Trage deine Kontaktdaten ein. Wir melden uns für ein ruhiges, unverbindliches Vorgespräch zurück.</p>
+
+          <form id="lead-form" novalidate>
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Vor- und Nachname" required>
+            </div>
+            <div class="field">
+              <label for="f-mail">E-Mail</label>
+              <input id="f-mail" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de" required>
+            </div>
+            <div class="field">
+              <label for="f-phone">Telefon</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="Für den persönlichen Rückruf" required>
+            </div>
+
+            <button type="submit" class="btn btn--primary">
+              Vorgespräch jetzt sichern
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10 L10 2 M4 2h6v6" stroke="currentColor" stroke-width="1.4"/></svg>
+            </button>
+
+            <p class="form-status" id="form-status" role="status"></p>
+          </form>
+
+          <p class="form-note">Demo-Formular ohne Datenübermittlung. Vor dem Livegang werden Datenschutzerklärung, verantwortliche Stelle und Anfrageweg ergänzt.</p>
+        </div>
+
+        <p class="muted" style="margin-top:1.5rem;font-size:.84rem;max-width:44ch">In Ruhe prüfen, ob ein persönliches Vorgespräch sinnvoll ist. Kostenfrei, unverbindlich und ohne Entscheidungsdruck.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div>
+        <div class="logo">
+          <svg class="logo__mark" viewBox="0 0 100 100" aria-hidden="true">
+            <rect x="1" y="1" width="98" height="98" rx="17" fill="#0B2426" stroke="#A96C46" stroke-width="2.5"/>
+            <path d="M82 99 H66 a17 17 0 0 0 17-17 Z" fill="#B87D5A"/>
+            <path d="M50 14 L57 44 L50 50 Z" fill="#C08457"/><path d="M50 14 L43 44 L50 50 Z" fill="#9A6742"/>
+            <path d="M50 86 L43 56 L50 50 Z" fill="#C08457"/><path d="M50 86 L57 56 L50 50 Z" fill="#9A6742"/>
+            <path d="M14 50 L44 43 L50 50 Z" fill="#C08457"/><path d="M14 50 L44 57 L50 50 Z" fill="#9A6742"/>
+            <path d="M86 50 L56 57 L50 50 Z" fill="#C08457"/><path d="M86 50 L56 43 L50 50 Z" fill="#9A6742"/>
+            <rect x="47.5" y="47.5" width="5" height="5" fill="#0B2426"/>
+          </svg>
+          <span class="logo__type">
+            <span class="logo__name">Berufswende</span>
+            <span class="logo__sub">BERATUNG</span>
+          </span>
+        </div>
+        <p class="footer__claim">Ein zweites berufliches Standbein beginnt mit einem ehrlichen Blick auf das, was zu dir passt.</p>
+      </div>
+
+      <div>
+        <h4>Seitenweg</h4>
+        <nav aria-label="Footer Navigation">
+          <a href="#warum">Warum jetzt</a>
+          <a href="#methodik">Methodik</a>
+          <a href="#eignung">Eignung</a>
+          <a href="#geschichte">Über uns</a>
+          <a href="#transparenz">Transparenz</a>
+          <a href="#redaktion">Redaktion</a>
+          <a href="#fragen">Fragen</a>
+        </nav>
+      </div>
+
+      <div>
+        <h4>Nächster Schritt</h4>
+        <p class="muted" style="margin-top:1.4rem;font-size:.88rem;max-width:30ch">In Ruhe prüfen, ob ein persönliches Vorgespräch sinnvoll ist.</p>
+        <a href="#vorgespraech" class="btn btn--ghost" style="margin-top:1.5rem">
+          Vorgespräch sichern
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10 L10 2 M4 2h6v6" stroke="currentColor" stroke-width="1.4"/></svg>
+        </a>
+        <p class="muted" style="margin-top:1.5rem;font-size:.76rem;max-width:34ch">Vor dem Livegang werden Datenschutz, Empfänger und technische Übermittlung final eingerichtet.</p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Berufswende Beratung</span>
+      <span>Impressum · Datenschutz — vor Livegang zu ergänzen</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Jahr */
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* Header: Stuck-State + Fortschritt */
+  var header = document.getElementById("header");
+  var progress = document.getElementById("progress");
+  function onScroll(){
+    var y = window.scrollY || 0;
+    header.dataset.stuck = y > 24 ? "true" : "false";
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* Mobile Drawer */
+  var burger = document.getElementById("burger");
+  var drawer = document.getElementById("drawer");
+  function setDrawer(open){
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+    drawer.dataset.open = String(open);
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+  burger.addEventListener("click", function(){
+    setDrawer(burger.getAttribute("aria-expanded") !== "true");
+  });
+  drawer.addEventListener("click", function(e){
+    if (e.target.closest("a")) setDrawer(false);
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && drawer.dataset.open === "true") { setDrawer(false); burger.focus(); }
+  });
+
+  /* Scroll-Reveal */
+  var revealItems = document.querySelectorAll(".reveal, .method > article");
+  if (reduce || !("IntersectionObserver" in window)) {
+    revealItems.forEach(function(el){ el.classList.add("is-in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add("is-in"); io.unobserve(en.target); }
+      });
+    }, {rootMargin:"0px 0px -12% 0px", threshold:0.12});
+    revealItems.forEach(function(el){ io.observe(el); });
+  }
+
+  /* Aktiver Nav-Punkt */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute("href")); }).filter(Boolean);
+  if ("IntersectionObserver" in window && sections.length) {
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function(a){
+          a.setAttribute("aria-current", a.getAttribute("href") === "#" + en.target.id ? "true" : "false");
+        });
+      });
+    }, {rootMargin:"-45% 0px -50% 0px"});
+    sections.forEach(function(s){ spy.observe(s); });
+  }
+
+  /* FAQ: nur eine Antwort offen */
+  var faqItems = document.querySelectorAll(".faq details");
+  faqItems.forEach(function(d){
+    d.addEventListener("toggle", function(){
+      if (!d.open) return;
+      faqItems.forEach(function(o){ if (o !== d) o.open = false; });
+    });
+  });
+
+  /* VSL-Platzhalter */
+  var play = document.querySelector(".vsl__play");
+  if (play) {
+    play.addEventListener("click", function(){
+      var cap = document.querySelector(".vsl__caption .k");
+      if (cap) cap.textContent = "Die VSL wird hier eingebunden, sobald das finale Video vorliegt.";
+    });
+  }
+
+  /* Demo-Formular: keine Übermittlung */
+  var form = document.getElementById("lead-form");
+  var status = document.getElementById("form-status");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var missing = Array.prototype.slice.call(form.querySelectorAll("input[required]"))
+      .filter(function(i){ return !i.value.trim(); });
+    if (missing.length) {
+      status.textContent = "Bitte Name, E-Mail und Telefonnummer ausfüllen.";
+      status.dataset.show = "true";
+      missing[0].focus();
+      return;
+    }
+    status.textContent = "Das Kurzformular ist derzeit eine Demo und übermittelt noch keine Daten. Anfrageweg und Datenschutzhinweise werden vor dem Livebetrieb finalisiert.";
+    status.dataset.show = "true";
+  });
+})();
+</script>
+</body>
+</html>
