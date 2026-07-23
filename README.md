@@ -36,13 +36,12 @@ Die Seite folgt dem Aufbau einer modernen Sales-Landingpage: **VSL groß und zen
 | 4 | Worum es geht | 3× Problem + 1× Lösung als 2×2-Grid |
 | 5 | Was du lernst | vier Feature-Karten mit Icons |
 | 6 | Ablauf | vier Etappen als vertikale Timeline |
-| 7 | Zahlen | drei Stat-Boxen — **Werte offen** |
-| 8 | Stimmen | drei Zitat-Karten — **Inhalte offen** |
-| 9 | Passung | vier Ausschlusskriterien, danach die Einladung |
-| 10 | Wer dahinter steht | ohne Foto, mit ehrlichem Hinweis |
-| 11 | Was noch fehlt | Transparenz über offene Belege |
-| 12 | Fragen | FAQ, eine Antwort zur Zeit |
-| 13 | Vorgespräch | drei Schritte + Formular |
+| 7 | Stimmen | drei Testimonial-Karten — **Inhalte offen** |
+| 8 | Passung | vier Ausschlusskriterien, danach die Einladung |
+| 9 | Wer dahinter steht | ohne Foto, mit ehrlichem Hinweis |
+| 10 | Was noch fehlt | Transparenz über offene Belege |
+| 11 | Fragen | FAQ, eine Antwort zur Zeit |
+| 12 | Vorgespräch | drei Schritte + Formular |
 
 ## Grundsatz für alle künftigen Änderungen
 
@@ -63,8 +62,17 @@ Autoplay stumm, der runde Unmute-Button und das Pausieren außerhalb des Sichtfe
 
 ## Platzhalter befüllen
 
-- **Zahlen:** in den drei `.stat`-Boxen `.stat-v` (Wert) und `.stat-l` (Bezeichnung) setzen, dann `slot` aus der Klasse entfernen
-- **Stimmen:** in den drei `.quote`-Karten Zitat und Name eintragen, dann `slot` entfernen
+Pro Karte in der Sektion **Stimmen**:
+
+- `.quote-body` — das Zitat im Originalwortlaut
+- `.quote-name` — Name
+- `.quote-role` — Zusatz (Ort, Alter, vorheriger Beruf)
+
+Danach `slot` aus der Klasse der `<article>` entfernen. Dann verschwinden der
+gestrichelte Rand und die gedämpfte Schrift, und die Karte sieht fertig aus.
+
+Eine Kennzahlen-Sektion gibt es bewusst nicht — belegbare Zahlen liegen nicht vor,
+und erfundene sind ausgeschlossen.
 
 ## Offen vor dem Livegang
 

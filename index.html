@@ -487,31 +487,9 @@ section[id]{scroll-margin-top:5rem}
   text-transform:uppercase;color:var(--copper);
 }
 
-/* ─── Stat-Boxen ─────────────────────────────────────────── */
+/* ─── Offener Platzhalter — sichtbar, aber nicht laut ────── */
 
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:52rem;margin-inline:auto}
-.stat{
-  text-align:center;
-  padding:clamp(1.4rem,3vw,2rem) 1rem;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-}
-.stat-v{
-  font-family:var(--display);font-weight:800;
-  font-size:clamp(1.8rem,1.3rem + 1.9vw,2.7rem);
-  letter-spacing:-.035em;line-height:1;
-  color:var(--copper);
-}
-.stat-l{
-  margin-top:.55rem;
-  font-size:.76rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--ink-3);
-}
-
-/* offener Platzhalter — sichtbar, aber nicht laut */
 .slot{border-style:dashed;border-color:rgb(255 255 255 / .1)}
-.slot .stat-v{color:var(--ink-4);letter-spacing:.05em}
 
 .slot-note{
   margin-top:1.6rem;text-align:center;
@@ -525,17 +503,46 @@ section[id]{scroll-margin-top:5rem}
 
 /* ─── Stimmen ────────────────────────────────────────────── */
 
-.quote{display:flex;flex-direction:column;min-height:190px}
+.quote{display:flex;flex-direction:column;min-height:230px}
 .quote-mark{
   font-family:var(--display);font-size:2.6rem;line-height:1;
   color:rgb(217 151 95 / .32);margin-bottom:.35rem;
 }
-.quote-body{flex:1;color:var(--ink-3);font-size:.95rem;line-height:1.6}
-.quote-by{
-  margin-top:1.1rem;padding-top:1rem;
-  border-top:1px solid var(--line);
-  font-size:.85rem;color:var(--ink-4);
+.quote-body{
+  flex:1;
+  font-size:1rem;line-height:1.6;
+  color:var(--ink-2);
+  text-wrap:pretty;
 }
+
+.quote-foot{
+  display:flex;align-items:center;gap:.75rem;
+  margin-top:1.3rem;padding-top:1.1rem;
+  border-top:1px solid var(--line);
+}
+.quote-av{
+  width:40px;height:40px;flex:none;
+  border-radius:50%;
+  display:grid;place-items:center;
+  background:rgb(255 255 255 / .04);
+  border:1px solid var(--line);
+}
+.quote-av svg{
+  width:19px;height:19px;
+  fill:none;stroke:var(--ink-4);
+  stroke-width:1.5;stroke-linecap:round;
+}
+.quote-name{
+  font-family:var(--display);font-weight:600;
+  font-size:.94rem;letter-spacing:-.015em;
+  color:var(--ink);
+}
+.quote-role{font-size:.83rem;color:var(--ink-4);line-height:1.4}
+
+/* im Platzhalter-Zustand tritt alles einen Schritt zurück */
+.quote.slot .quote-body{color:var(--ink-3)}
+.quote.slot .quote-name{color:var(--ink-3)}
+.quote.slot .quote-av{border-style:dashed}
 
 /* ─── Person ─────────────────────────────────────────────── */
 
@@ -704,7 +711,7 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
 }
 
 @media (max-width:720px){
-  .g-2,.g-3,.g-4,.stats,.steps{grid-template-columns:1fr}
+  .g-2,.g-3,.g-4,.steps{grid-template-columns:1fr}
   .foot-top{flex-direction:column;gap:2rem}
   .foot-nav{gap:2rem}
   .hero-cta .btn{flex:1;min-width:170px}
@@ -755,7 +762,7 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
       <a href="#fragen">Fragen</a>
     </nav>
 
-    <a href="#gespraech" class="btn btn-primary">Rückruf anfragen</a>
+    <a href="#gespraech" class="btn btn-primary">Vorgespräch sichern</a>
 
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen"><i></i></button>
   </div>
@@ -769,7 +776,7 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
       <li><a href="#wer">Wer dahinter steht</a></li>
       <li><a href="#fragen">Fragen</a></li>
     </ul>
-    <a href="#gespraech" class="btn btn-primary">Rückruf anfragen</a>
+    <a href="#gespraech" class="btn btn-primary">Vorgespräch sichern</a>
   </div>
 </header>
 
@@ -788,7 +795,7 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
       </p>
       <div class="hero-cta rv">
         <a href="#gespraech" class="btn btn-primary btn-lg">
-          Rückruf anfragen
+          Vorgespräch sichern
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <a href="#ablauf" class="btn btn-ghost btn-lg">Wie es abläuft</a>
@@ -952,49 +959,56 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
     </div>
   </section>
 
-  <!-- ══ ZAHLEN ══ -->
-  <section class="sec sec-line">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="kicker">In Zahlen</span>
-        <h2 class="d2">Was sich <span class="accent">belegen lässt.</span></h2>
-      </div>
-      <div class="stats">
-        <!-- Werte eintragen: .stat-v = Zahl, .stat-l = Bezeichnung, dann class "slot" entfernen -->
-        <div class="stat slot rv"><div class="stat-v">—</div><div class="stat-l">Kennzahl 1</div></div>
-        <div class="stat slot rv"><div class="stat-v">—</div><div class="stat-l">Kennzahl 2</div></div>
-        <div class="stat slot rv"><div class="stat-v">—</div><div class="stat-l">Kennzahl 3</div></div>
-      </div>
-      <p class="slot-note rv">Die Werte kommen hier rein, sobald sie freigegeben sind. Bis dahin steht hier keine Zahl.</p>
-    </div>
-  </section>
-
-  <!-- ══ STIMMEN ══ -->
-  <section class="sec sec-line">
+  <!-- ══ STIMMEN ══
+       Pro Karte: .quote-body = Zitat im Originalwortlaut, .quote-name = Name,
+       .quote-role = Zusatz (Ort, Alter, vorheriger Beruf). Danach class "slot"
+       von der <article> entfernen — dann verschwindet der Platzhalter-Look. -->
+  <section class="sec sec-line" id="stimmen">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="kicker">Stimmen</span>
         <h2 class="d2">Von Menschen, die den Weg<br><span class="accent">wirklich gegangen sind.</span></h2>
       </div>
       <div class="grid g-3">
-        <!-- Zitat + Name eintragen, dann class "slot" entfernen -->
+
         <article class="card quote slot rv">
           <div class="quote-mark">„</div>
-          <p class="quote-body">Platz für eine Rückmeldung im Originalwortlaut, sobald sie vorliegt und freigegeben ist.</p>
-          <div class="quote-by">Name folgt</div>
+          <p class="quote-body">Hier steht die Rückmeldung im Originalwortlaut.</p>
+          <div class="quote-foot">
+            <div class="quote-av"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.4"/><path d="M5.6 19.4a7 7 0 0 1 12.8 0"/></svg></div>
+            <div>
+              <div class="quote-name">Name</div>
+              <div class="quote-role">Ort, vorheriger Beruf</div>
+            </div>
+          </div>
         </article>
+
         <article class="card quote slot rv">
           <div class="quote-mark">„</div>
-          <p class="quote-body">Platz für eine Rückmeldung im Originalwortlaut, sobald sie vorliegt und freigegeben ist.</p>
-          <div class="quote-by">Name folgt</div>
+          <p class="quote-body">Hier steht die Rückmeldung im Originalwortlaut.</p>
+          <div class="quote-foot">
+            <div class="quote-av"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.4"/><path d="M5.6 19.4a7 7 0 0 1 12.8 0"/></svg></div>
+            <div>
+              <div class="quote-name">Name</div>
+              <div class="quote-role">Ort, vorheriger Beruf</div>
+            </div>
+          </div>
         </article>
+
         <article class="card quote slot rv">
           <div class="quote-mark">„</div>
-          <p class="quote-body">Platz für eine Rückmeldung im Originalwortlaut, sobald sie vorliegt und freigegeben ist.</p>
-          <div class="quote-by">Name folgt</div>
+          <p class="quote-body">Hier steht die Rückmeldung im Originalwortlaut.</p>
+          <div class="quote-foot">
+            <div class="quote-av"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.4"/><path d="M5.6 19.4a7 7 0 0 1 12.8 0"/></svg></div>
+            <div>
+              <div class="quote-name">Name</div>
+              <div class="quote-role">Ort, vorheriger Beruf</div>
+            </div>
+          </div>
         </article>
+
       </div>
-      <p class="slot-note rv">Nichts davon wird erfunden. Diese Karten bleiben leer, bis echte Stimmen da sind.</p>
+      <p class="slot-note rv">Platzhalter. Hier kommen echte Stimmen rein, sobald sie vorliegen und freigegeben sind.</p>
     </div>
   </section>
 
@@ -1164,7 +1178,7 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
           </div>
         </div>
         <button type="submit" class="btn btn-primary btn-lg">
-          Rückruf anfragen
+          Vorgespräch sichern
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
         <p class="form-note" id="form-note" role="status">
@@ -1206,7 +1220,7 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
         <div>
           <h4>Nächster Schritt</h4>
           <ul>
-            <li><a href="#gespraech">Rückruf anfragen</a></li>
+            <li><a href="#gespraech">Vorgespräch sichern</a></li>
             <li><a href="#wer">Wer dahinter steht</a></li>
           </ul>
         </div>
