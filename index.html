@@ -3,39 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Berufswende — Herausfinden, ob es passt. Bevor du etwas aufgibst.</title>
-<meta name="description" content="Online-Beratung lernen, neben dem Job. In ruhigem Tempo, mit persönlicher Begleitung. Am Anfang steht ein Telefonat, das dich nichts kostet und zu nichts verpflichtet.">
-<meta name="theme-color" content="#08191C">
+<title>Berufswende — Erst herausfinden, ob es passt. Dann entscheiden.</title>
+<meta name="description" content="Online-Beratung lernen, neben dem Job. Persönlich begleitet, in ruhigem Tempo. Am Anfang steht ein Telefonat, das nichts kostet und zu nichts verpflichtet.">
+<meta name="theme-color" content="#050E10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230B2426'/%3E%3Cpath d='M50 12 L57 43 L88 50 L57 57 L50 88 L43 57 L12 50 L43 43 Z' fill='%23C08457'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23050E10'/%3E%3Cpath d='M50 14 L57 43 L86 50 L57 57 L50 86 L43 57 L14 50 L43 43 Z' fill='%23D9975F'/%3E%3C/svg%3E">
 
 <style>
-/* ══════════════════════════════════════════════════════
-   BERUFSWENDE · Cinematic Dusk
-   ══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   BERUFSWENDE
+   ═══════════════════════════════════════════════════════════ */
 
 :root{
-  --night:#08191C;
-  --night-2:#0C2124;
-  --night-3:#112B2D;
-  --dusk:#16393A;
+  --bg:#050E10;
+  --bg-2:#081619;
+  --bg-3:#0B1E21;
 
-  --copper:#C88A5C;
-  --copper-soft:#D9A176;
-  --sage:#9DB8AB;
+  --copper:#D9975F;
+  --copper-bright:#E8AE79;
 
-  --paper:#F4EEE4;
-  --paper-dim:rgb(244 238 228 / .58);
-  --paper-faint:rgb(244 238 228 / .34);
-  --hair:rgb(244 238 228 / .11);
+  --ink:#F2F5F4;
+  --ink-2:rgb(242 245 244 / .64);
+  --ink-3:rgb(242 245 244 / .42);
+  --ink-4:rgb(242 245 244 / .24);
 
-  --serif:"Cormorant Garamond",Georgia,serif;
-  --sans:"Manrope",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --card:rgb(255 255 255 / .022);
+  --card-hi:rgb(255 255 255 / .048);
+  --line:rgb(255 255 255 / .075);
+  --line-hi:rgb(255 255 255 / .17);
 
-  --ease:cubic-bezier(.19,1,.22,1);
-  --gutter:clamp(1.25rem,5vw,4.5rem);
+  --warn:#C97A6A;
+
+  --display:"Inter Tight",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --text:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(1.15rem,4vw,2.5rem);
+  --max:1180px;
+  --radius:16px;
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -43,958 +50,1169 @@
 html{
   -webkit-text-size-adjust:100%;
   scroll-behavior:smooth;
-  scroll-padding-top:4.5rem;
+  scroll-padding-top:6rem;
 }
 
 body{
   margin:0;
-  background:var(--night);
-  color:var(--paper);
-  font-family:var(--sans);
-  font-weight:300;
-  font-size:clamp(1.02rem,.98rem + .22vw,1.13rem);
-  line-height:1.72;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--text);
+  font-size:1rem;
+  line-height:1.65;
   -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
   overflow-x:hidden;
 }
 
-/* Filmkorn über der ganzen Seite — nimmt der Fläche das Digitale */
+/* sehr feines Korn — nimmt den Flächen das Digitale, ohne aufzufallen */
 body::after{
   content:"";
-  position:fixed;inset:-50%;
-  z-index:60;pointer-events:none;
-  opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grain 6s steps(4) infinite;
-}
-@keyframes grain{
-  0%,100%{transform:translate(0,0)}
-  25%{transform:translate(-3%,2%)}
-  50%{transform:translate(2%,-3%)}
-  75%{transform:translate(-2%,-2%)}
+  position:fixed;inset:0;
+  z-index:200;pointer-events:none;
+  opacity:.02;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 img,svg,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-h1,h2,h3,p,figure,blockquote{margin:0}
-h1,h2,h3,blockquote{text-wrap:balance}
-p{text-wrap:pretty}
-button{font:inherit;color:inherit}
-::selection{background:var(--copper);color:#06171A}
+h1,h2,h3,h4,p,figure,blockquote,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+button,input{font:inherit;color:inherit}
+
+::selection{background:var(--copper);color:#1A0F06}
 
 :where(a,button,summary,input):focus-visible{
-  outline:1px solid var(--copper-soft);
-  outline-offset:4px;
+  outline:2px solid var(--copper);
+  outline-offset:3px;
+  border-radius:4px;
 }
 
-/* ─── Typografie: großer Gradkontrast ─── */
-.set{font-family:var(--serif);font-weight:400;line-height:1.06;letter-spacing:-.016em}
-.set-xl{font-size:clamp(2.6rem,1.5rem + 3.4vw,4.5rem)}
-.set-l{font-size:clamp(2rem,1.35rem + 2.2vw,3.4rem);line-height:1.08}
-.set-m{font-size:clamp(1.6rem,1.25rem + 1.5vw,2.5rem);line-height:1.14}
-.set-s{font-size:clamp(1.32rem,1.15rem + .8vw,1.85rem);line-height:1.2;font-weight:500}
-
-.dim{color:var(--paper-dim)}
-.faint{color:var(--paper-faint)}
-
-/* Das einzige kursive Akzentwort der Seite */
-.once{font-style:italic;font-weight:300;color:var(--copper-soft)}
-
-/* ─── Breiten: keine Sektion sitzt zweimal gleich ─── */
-.wide{width:min(1340px,100% - var(--gutter)*2);margin-inline:auto}
-.mid{width:min(1060px,100% - var(--gutter)*2);margin-inline:auto}
-.narrow{width:min(720px,100% - var(--gutter)*2);margin-inline:auto}
-
-/* ─── Button ─── */
-.cta{
-  display:inline-flex;align-items:center;gap:1.1rem;
-  padding:1.08rem 1.9rem;
-  background:var(--copper);color:#06171A;
-  font-size:.9rem;font-weight:600;letter-spacing:.01em;
-  border:none;cursor:pointer;border-radius:1px;
-  transition:background .5s var(--ease),transform .5s var(--ease);
+.wrap{
+  width:100%;
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-inline:var(--pad);
 }
-.cta:hover{background:var(--copper-soft);transform:translateY(-2px)}
-.cta svg{transition:transform .5s var(--ease)}
-.cta:hover svg{transform:translateX(4px)}
 
-.quiet{
-  display:inline-flex;align-items:center;gap:.7rem;
-  font-size:.92rem;color:var(--paper-dim);
-  padding-bottom:.35rem;
-  border-bottom:1px solid var(--hair);
-  transition:color .5s var(--ease),border-color .5s var(--ease);
-}
-.quiet:hover{color:var(--paper);border-color:var(--copper)}
+/* ─── Typo-Skala ─────────────────────────────────────────── */
 
-/* ═══════════ HEADER ═══════════ */
-.top{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  transition:background .6s var(--ease),backdrop-filter .6s var(--ease);
+.d1,.d2,.d3{
+  font-family:var(--display);
+  font-weight:700;
+  letter-spacing:-.035em;
+  line-height:1.05;
+  text-wrap:balance;
 }
-.top[data-lift="1"]{
-  background:rgb(8 25 28 / .82);
-  backdrop-filter:blur(14px) saturate(130%);
-}
-.top__in{
-  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
-  height:4.5rem;
-}
-.mark{display:flex;align-items:center;gap:.72rem}
-.mark svg{width:34px;height:34px;flex:none}
-.mark b{font-family:var(--serif);font-size:1.28rem;font-weight:500;letter-spacing:0}
+.d1{font-size:clamp(2.55rem,1.7rem + 4.2vw,4.9rem);font-weight:800}
+.d2{font-size:clamp(1.95rem,1.4rem + 2.7vw,3.35rem)}
+.d3{font-size:clamp(1.3rem,1.15rem + .8vw,1.8rem);letter-spacing:-.028em;line-height:1.17}
 
-.top nav{display:none}
-@media(min-width:960px){
-  .top nav{display:flex;align-items:center;gap:2.3rem}
+.h-card{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:1.14rem;
+  letter-spacing:-.022em;
+  line-height:1.28;
 }
-.top nav a{
-  font-size:.87rem;font-weight:300;color:var(--paper-dim);
-  transition:color .45s var(--ease);
-}
-.top nav a:hover,.top nav a[data-here="1"]{color:var(--paper)}
 
-.top .cta{display:none;padding:.82rem 1.4rem;font-size:.83rem}
-@media(min-width:960px){.top .cta{display:inline-flex}}
+.accent{color:var(--copper)}
 
-.tog{
-  display:flex;flex-direction:column;gap:5px;
-  background:none;border:none;padding:.6rem;cursor:pointer;margin-right:-.6rem;
+.lead{
+  font-size:clamp(1.02rem,.97rem + .28vw,1.18rem);
+  color:var(--ink-2);
+  line-height:1.62;
+  text-wrap:pretty;
 }
-@media(min-width:960px){.tog{display:none}}
-.tog span{display:block;width:22px;height:1px;background:var(--paper);transition:transform .5s var(--ease),opacity .3s}
-.tog[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.tog[aria-expanded="true"] span:nth-child(2){opacity:0}
-.tog[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.body{color:var(--ink-2);text-wrap:pretty}
 
-.sheet{
-  position:fixed;inset:0;z-index:49;
-  background:var(--night);
-  display:flex;flex-direction:column;justify-content:center;
-  opacity:0;visibility:hidden;
-  transition:opacity .55s var(--ease),visibility .55s;
-}
-.sheet[data-open="1"]{opacity:1;visibility:visible}
-.sheet a{
-  display:block;padding:.85rem 0;
-  font-family:var(--serif);font-size:clamp(1.9rem,7vw,2.9rem);
-  color:var(--paper-dim);transition:color .4s var(--ease);
-}
-.sheet a:hover{color:var(--paper)}
-.sheet .cta{margin-top:2.5rem}
+/* ─── Kicker ─────────────────────────────────────────────── */
 
-/* ═══════════ 1 · HERO / VSL ═══════════ */
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--copper);
+}
+.kicker::before{
+  content:"";
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--copper);
+  box-shadow:0 0 10px 1px rgb(217 151 95 / .7);
+}
+
+/* ─── Buttons ────────────────────────────────────────────── */
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+  padding:.82rem 1.5rem;
+  border-radius:11px;
+  font-family:var(--display);
+  font-size:.95rem;
+  font-weight:600;
+  letter-spacing:-.012em;
+  border:1px solid transparent;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:transform .25s var(--ease),background .25s,border-color .25s,box-shadow .25s;
+}
+.btn svg{width:15px;height:15px;flex:none;transition:transform .3s var(--ease)}
+
+.btn-primary{
+  background:linear-gradient(180deg,var(--copper-bright),var(--copper));
+  color:#1A0F06;
+  box-shadow:0 1px 0 rgb(255 255 255 / .25) inset,0 8px 26px -10px rgb(217 151 95 / .65);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgb(255 255 255 / .3) inset,0 14px 34px -10px rgb(217 151 95 / .8)}
+.btn-primary:hover svg{transform:translateX(3px)}
+
+.btn-ghost{
+  background:var(--card-hi);
+  border-color:var(--line);
+  color:var(--ink);
+}
+.btn-ghost:hover{background:rgb(255 255 255 / .075);border-color:var(--line-hi);transform:translateY(-2px)}
+
+.btn-lg{padding:1rem 1.85rem;font-size:1rem}
+
+/* ─── Topbar ─────────────────────────────────────────────── */
+
+.topbar{
+  position:relative;z-index:60;
+  background:linear-gradient(90deg,rgb(217 151 95 / .06),rgb(217 151 95 / .13),rgb(217 151 95 / .06));
+  border-bottom:1px solid rgb(217 151 95 / .14);
+  text-align:center;
+  padding:.6rem var(--pad);
+  font-size:.82rem;
+  color:var(--ink-2);
+}
+.topbar b{color:var(--copper);font-weight:600}
+
+/* ─── Header ─────────────────────────────────────────────── */
+
+.head{
+  position:sticky;top:0;z-index:80;
+  background:rgb(5 14 16 / .72);
+  backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,background .3s;
+}
+.head.stuck{border-bottom-color:var(--line);background:rgb(5 14 16 / .92)}
+
+.head-in{
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  height:66px;
+}
+
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  font-family:var(--display);
+  font-weight:700;
+  font-size:.94rem;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  flex:none;
+}
+.brand svg{width:24px;height:24px;flex:none}
+
+.nav{display:flex;gap:.3rem;margin-inline:auto}
+.nav a{
+  padding:.45rem .78rem;
+  border-radius:8px;
+  font-size:.9rem;
+  color:var(--ink-2);
+  transition:color .2s,background .2s;
+}
+.nav a:hover,.nav a[data-here="1"]{color:var(--ink);background:var(--card-hi)}
+
+.head .btn{padding:.6rem 1.15rem;font-size:.88rem}
+
+.burger{
+  display:none;
+  width:40px;height:40px;
+  align-items:center;justify-content:center;
+  background:var(--card-hi);
+  border:1px solid var(--line);
+  border-radius:9px;
+  cursor:pointer;
+  flex:none;
+}
+.burger i{display:block;width:16px;height:1.5px;background:var(--ink);position:relative;transition:.3s var(--ease)}
+.burger i::before,.burger i::after{
+  content:"";position:absolute;left:0;width:16px;height:1.5px;background:var(--ink);transition:.3s var(--ease);
+}
+.burger i::before{top:-5px}
+.burger i::after{top:5px}
+.burger[aria-expanded="true"] i{background:transparent}
+.burger[aria-expanded="true"] i::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] i::after{top:0;transform:rotate(-45deg)}
+
+.mnav{
+  display:none;
+  background:var(--bg);
+  border-top:1px solid var(--line);
+  padding:.4rem var(--pad) 1.1rem;
+}
+.mnav.open{display:block}
+.mnav ul a{display:block;padding:.75rem .1rem;color:var(--ink-2);border-bottom:1px solid var(--line)}
+.mnav ul a:hover{color:var(--ink)}
+.mnav li:last-child a{border-bottom:none}
+.mnav .btn{width:100%;margin-top:.9rem}
+@media (min-width:961px){.mnav{display:none !important}}
+
+/* ─── Hero ───────────────────────────────────────────────── */
+
 .hero{
   position:relative;
-  min-height:100svh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:7.5rem 0 clamp(2rem,4vw,3.25rem);
+  padding:clamp(3.5rem,8vw,6.5rem) 0 clamp(2rem,4vw,3rem);
+  text-align:center;
   overflow:hidden;
 }
-
-/* Fensterlicht zur blauen Stunde — Licht statt Fläche */
-.hero__light{
-  position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(58rem 40rem at 74% 22%,rgb(200 138 92 / .17),transparent 58%),
-    radial-gradient(52rem 46rem at 20% 8%,rgb(22 57 58 / .92),transparent 62%),
-    radial-gradient(70rem 50rem at 50% 108%,rgb(12 33 36 / .95),transparent 70%),
-    linear-gradient(172deg,#0A2023 0%,#08191C 58%,#061417 100%);
-  will-change:transform;
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-32%;left:50%;
+  width:min(1200px,150vw);
+  aspect-ratio:1;
+  transform:translateX(-50%);
+  background:radial-gradient(circle,rgb(217 151 95 / .14) 0%,rgb(217 151 95 / .05) 32%,transparent 62%);
+  pointer-events:none;
 }
-.hero__light::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(105deg,transparent 42%,rgb(200 138 92 / .07) 58%,transparent 72%);
-}
+.hero > *{position:relative}
 
-.hero__in{position:relative;z-index:1}
+.hero .d1{margin-bottom:1.5rem}
+.hero .lead{max-width:37rem;margin:0 auto 2.2rem}
 
-.hero__grid{
-  display:grid;gap:clamp(2.5rem,5vw,4rem);
-  grid-template-columns:1fr;
-  align-items:end;
-}
-@media(min-width:1000px){
-  .hero__grid{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:clamp(3rem,5vw,5.5rem)}
+.hero-cta{
+  display:flex;flex-wrap:wrap;gap:.7rem;
+  justify-content:center;
+  margin-bottom:2.2rem;
 }
 
-.hero h1{max-width:14ch}
-.hero__sub{
-  margin-top:clamp(1.5rem,3vw,2.1rem);
-  max-width:40ch;font-size:clamp(1.05rem,1rem + .3vw,1.2rem);
-  color:var(--paper-dim);
+.marks{
+  display:flex;flex-wrap:wrap;
+  justify-content:center;
+  gap:.5rem 1.6rem;
+  font-size:.85rem;
+  color:var(--ink-3);
 }
-.hero__act{
-  margin-top:clamp(2rem,4vw,2.75rem);
-  display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem 2rem;
+.marks li{display:inline-flex;align-items:center;gap:.5rem}
+.marks li::before{
+  content:"";width:4px;height:4px;border-radius:50%;
+  background:var(--copper);opacity:.85;
 }
 
-/* Der VSL ist der Held */
-.vsl{position:relative;width:100%}
-.vsl__stage{
+/* ─── VSL ────────────────────────────────────────────────── */
+
+.vsl-sec{
   position:relative;
+  padding-bottom:clamp(4rem,9vw,7rem);
+}
+.vsl-sec::before{
+  content:"";
+  position:absolute;
+  top:6%;left:50%;
+  width:min(900px,115vw);
+  height:72%;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse,rgb(217 151 95 / .17) 0%,transparent 68%);
+  filter:blur(48px);
+  pointer-events:none;
+  opacity:.8;
+  transition:opacity .8s var(--ease),transform .8s var(--ease);
+}
+.vsl-sec.playing::before{opacity:1;transform:translateX(-50%) scale(1.1)}
+
+.vsl{
+  position:relative;
+  max-width:1040px;
+  margin-inline:auto;
   aspect-ratio:16/9;
-  background:linear-gradient(158deg,#123033,#081C1F 72%);
+  border-radius:clamp(12px,1.6vw,20px);
   overflow:hidden;
-  box-shadow:0 40px 120px rgb(0 0 0 / .55), 0 0 0 1px rgb(244 238 228 / .09);
+  background:linear-gradient(160deg,var(--bg-3),var(--bg-2));
+  border:1px solid var(--line);
+  box-shadow:0 40px 90px -30px rgb(0 0 0 / .85),0 0 0 1px rgb(255 255 255 / .03);
 }
-.vsl__stage video{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;background:#081C1F;
-}
-/* Lichtstimmung im leeren Videofeld */
-.vsl__stage::before{
-  content:"";position:absolute;inset:0;z-index:1;
+.vsl video{width:100%;height:100%;object-fit:cover}
+
+/* Zustand, solange keine Videodatei eingehängt ist */
+.vsl-empty{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:1.1rem;text-align:center;
+  padding:var(--pad);
   background:
-    radial-gradient(24rem 18rem at 68% 34%,rgb(200 138 92 / .2),transparent 62%),
-    radial-gradient(30rem 24rem at 22% 88%,rgb(22 57 58 / .8),transparent 66%);
+    radial-gradient(ellipse at 50% 42%,rgb(217 151 95 / .1),transparent 62%),
+    linear-gradient(160deg,var(--bg-3),var(--bg-2));
 }
-.vsl__stage.is-live::before{display:none}
-
-.vsl__play{
-  position:absolute;z-index:3;
-  left:50%;top:50%;transform:translate(-50%,-50%);
-  width:clamp(76px,9vw,104px);aspect-ratio:1;border-radius:50%;
-  background:rgb(8 25 28 / .34);
-  border:1px solid rgb(244 238 228 / .38);
-  backdrop-filter:blur(6px);
-  display:grid;place-items:center;cursor:pointer;
-  transition:background .55s var(--ease),border-color .55s var(--ease),transform .55s var(--ease);
-}
-.vsl__play::before{
-  content:"";position:absolute;inset:-1px;border-radius:50%;
-  border:1px solid rgb(200 138 92 / .5);
-  animation:ring 3.4s var(--ease) infinite;
-}
-@keyframes ring{
-  0%{transform:scale(1);opacity:.7}
-  70%{transform:scale(1.45);opacity:0}
-  100%{transform:scale(1.45);opacity:0}
-}
-.vsl__play:hover{background:var(--copper);border-color:var(--copper);transform:translate(-50%,-50%) scale(1.06)}
-.vsl__play:hover svg{fill:#06171A}
-.vsl__play svg{margin-left:4px;fill:var(--paper);transition:fill .5s var(--ease)}
-.vsl__stage.is-live .vsl__play{opacity:0;visibility:hidden}
-
-.vsl__over{
-  position:absolute;z-index:2;left:0;right:0;bottom:0;
-  padding:clamp(1.3rem,3vw,2.2rem);
-  background:linear-gradient(0deg,rgb(6 20 23 / .94),rgb(6 20 23 / .35) 55%,transparent);
-  transition:opacity .5s var(--ease);
-}
-.vsl__stage.is-live .vsl__over{opacity:0;pointer-events:none}
-.vsl__over p{font-family:var(--serif);font-size:clamp(1.2rem,1rem + .9vw,1.75rem);line-height:1.22;max-width:26ch}
-.vsl__foot{
-  display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;justify-content:space-between;
-  margin-top:1rem;font-size:.78rem;color:var(--paper-faint);
-}
-
-.scroll-hint{
-  margin-top:clamp(2rem,4vw,3.25rem);
-  display:flex;align-items:center;gap:.9rem;
-  font-size:.74rem;letter-spacing:.04em;color:var(--paper-faint);
-}
-.scroll-hint i{
-  display:block;width:1px;height:34px;
-  background:linear-gradient(180deg,var(--copper),transparent);
-  animation:drop 2.6s var(--ease) infinite;
-}
-@keyframes drop{
-  0%{transform:scaleY(0);transform-origin:top}
-  45%{transform:scaleY(1);transform-origin:top}
-  55%{transform:scaleY(1);transform-origin:bottom}
-  100%{transform:scaleY(0);transform-origin:bottom}
-}
-
-/* ═══════════ 2 · DER MOMENT DAVOR ═══════════ */
-.moment{
-  padding:clamp(5rem,10vw,8.5rem) 0;
-  background:linear-gradient(180deg,#061417,#0C2124 62%,#0A1E21);
-}
-.moment p{
-  font-family:var(--serif);
-  font-size:clamp(1.75rem,1.1rem + 3.1vw,3.6rem);
-  line-height:1.24;letter-spacing:-.012em;
-  color:var(--paper-dim);
-}
-.moment p + p{margin-top:clamp(1.6rem,3vw,2.4rem)}
-.moment p.lit{color:var(--paper)}
-.moment .after{
-  margin-top:clamp(3rem,6vw,4.5rem);
-  max-width:52ch;font-size:1.05rem;color:var(--paper-dim);
-  font-family:var(--sans);
-}
-
-/* ═══════════ 3 · WAS DU LERNST ═══════════ */
-.learn{
-  padding:clamp(4rem,8vw,7rem) 0;
-  background:var(--night-2);
-  position:relative;
-}
-.learn__grid{
-  display:grid;gap:clamp(2.5rem,5vw,4rem);
-  grid-template-columns:1fr;
-}
-@media(min-width:1000px){
-  /* bewusst asymmetrisch, Überschrift läuft über die Rasterkante hinaus */
-  .learn__grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(3rem,6vw,6rem)}
-  .learn h2{margin-left:calc(var(--gutter) * -.5)}
-}
-.learn h2{max-width:13ch}
-.learn__body p{max-width:56ch;color:var(--paper-dim)}
-.learn__body p + p{margin-top:1.35rem}
-
-.pull{
-  margin:clamp(2.2rem,4vw,3rem) 0;
-  padding-left:clamp(1.25rem,2.5vw,2rem);
-  border-left:1px solid var(--copper);
-  font-family:var(--serif);
-  font-size:clamp(1.4rem,1.15rem + 1.2vw,2.15rem);
-  line-height:1.24;color:var(--paper);
-  max-width:24ch;
-}
-
-/* ═══════════ 4 · WIE ES ABLÄUFT ═══════════ */
-.path{
-  padding:clamp(4rem,8vw,7rem) 0;
-  background:linear-gradient(180deg,var(--night-2),#0A2023 50%,var(--night-2));
-}
-.path h2{max-width:15ch;margin-bottom:clamp(3rem,7vw,5.5rem)}
-
-.track{position:relative;padding-left:clamp(2rem,5vw,4.5rem)}
-/* der durchlaufende Weg statt vier Kästen */
-.track::before{
-  content:"";position:absolute;left:0;top:.6rem;bottom:.6rem;width:1px;
-  background:var(--hair);
-}
-.track__fill{
-  position:absolute;left:0;top:.6rem;width:1px;height:0;
-  background:linear-gradient(180deg,var(--copper),rgb(200 138 92 / .25));
-  transition:height .18s linear;
-}
-.stop{position:relative;padding-bottom:clamp(3rem,6vw,4.75rem)}
-.stop:last-child{padding-bottom:0}
-.stop::before{
-  content:"";position:absolute;
-  left:calc(clamp(2rem,5vw,4.5rem) * -1);top:.62rem;
-  width:9px;height:9px;margin-left:-4px;
-  background:var(--night-2);
-  border:1px solid var(--paper-faint);
-  border-radius:50%;
-  transition:background .6s var(--ease),border-color .6s var(--ease),transform .6s var(--ease);
-}
-.stop.on::before{background:var(--copper);border-color:var(--copper);transform:scale(1.25)}
-.stop__when{
-  font-size:.78rem;color:var(--copper-soft);
-  margin-bottom:.7rem;
-}
-.stop h3{max-width:20ch}
-.stop p{margin-top:.9rem;max-width:54ch;color:var(--paper-dim);font-size:1rem}
-
-/* ═══════════ 5 · FÜR WEN DAS NICHTS IST ═══════════ */
-.fit{
-  padding:clamp(4rem,8vw,7rem) 0;
-  background:var(--night);
-}
-.fit h2{max-width:16ch}
-.fit__lead{margin-top:1.5rem;max-width:50ch;color:var(--paper-dim)}
-
-.no{margin-top:clamp(3rem,6vw,4.5rem);display:grid;gap:0}
-.no li{
-  list-style:none;
-  display:grid;gap:.4rem 2rem;
-  padding:1.6rem 0;
-  border-top:1px solid var(--hair);
-}
-.no li:last-child{border-bottom:1px solid var(--hair)}
-@media(min-width:840px){
-  .no li{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:baseline;gap:3rem}
-}
-.no b{
-  font-family:var(--serif);font-weight:500;
-  font-size:clamp(1.22rem,1.1rem + .55vw,1.6rem);line-height:1.24;
-}
-.no span{color:var(--paper-dim);font-size:.98rem}
-
-.yes{
-  margin-top:clamp(3.5rem,7vw,5rem);
-  padding-top:clamp(2.5rem,5vw,3.5rem);
-  border-top:1px solid var(--hair);
-  display:grid;gap:2rem;
-}
-@media(min-width:900px){.yes{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:4rem}}
-.yes p{color:var(--paper-dim);max-width:54ch}
-
-/* ═══════════ 6 · WER DAHINTER STEHT ═══════════ */
-.who{
-  padding:clamp(4rem,8vw,6.5rem) 0;
-  background:linear-gradient(180deg,var(--night),#0D2427);
-}
-.who__in{
-  display:grid;gap:clamp(2.5rem,5vw,4rem);
-}
-@media(min-width:940px){
-  .who__in{grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);gap:clamp(3rem,6vw,5.5rem);align-items:center}
-}
-/* Platz für das echte Portrait — kein Grau-Kasten, sondern Licht */
-.who__frame{
-  position:relative;aspect-ratio:4/5;
-  background:
-    radial-gradient(70% 55% at 62% 26%,rgb(200 138 92 / .16),transparent 64%),
-    linear-gradient(160deg,#16393A,#081C1F 74%);
-  overflow:hidden;
-  box-shadow:0 30px 90px rgb(0 0 0 / .45), 0 0 0 1px rgb(244 238 228 / .08);
-  display:grid;place-items:end start;
-  padding:clamp(1.25rem,2.5vw,1.9rem);
-}
-.who__frame svg{
-  position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
-  width:min(48%,190px);opacity:.2;
-}
-.who__frame span{
-  position:relative;font-size:.78rem;color:var(--paper-faint);max-width:26ch;line-height:1.5;
-}
-.who h2{max-width:16ch}
-.who p{margin-top:1.6rem;max-width:54ch;color:var(--paper-dim)}
-.sig{
-  margin-top:2.2rem;
-  font-family:var(--serif);font-style:italic;font-size:1.3rem;
-  color:var(--paper-faint);
-}
-
-/* ═══════════ 7 · WAS HIER NOCH FEHLT ═══════════ */
-.open{
-  padding:clamp(4rem,8vw,6.5rem) 0;
-  background:#0D2427;
-}
-.open h2{max-width:18ch}
-.open p{margin-top:1.7rem;color:var(--paper-dim)}
-.open p + p{margin-top:1.2rem}
-.open .list{
-  margin-top:2.5rem;padding-left:0;list-style:none;
-  display:grid;gap:.85rem;
-}
-.open .list li{
-  display:flex;gap:1rem;align-items:baseline;
-  color:var(--paper-dim);font-size:1rem;
-}
-.open .list li::before{
-  content:"";flex:none;width:14px;height:1px;background:var(--copper);
-  transform:translateY(-.35em);
-}
-
-/* ═══════════ 8 · FRAGEN ═══════════ */
-.ask{
-  padding:clamp(4rem,8vw,7rem) 0;
-  background:linear-gradient(180deg,#0D2427,var(--night-2));
-}
-.ask h2{max-width:12ch;margin-bottom:clamp(2.5rem,5vw,4rem)}
-.ask details{border-top:1px solid var(--hair)}
-.ask details:last-of-type{border-bottom:1px solid var(--hair)}
-.ask summary{
-  display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;
-  padding:1.55rem 0;cursor:pointer;list-style:none;
-  font-family:var(--serif);
-  font-size:clamp(1.22rem,1.1rem + .6vw,1.65rem);line-height:1.26;
-  transition:color .45s var(--ease);
-}
-.ask summary::-webkit-details-marker{display:none}
-.ask summary:hover{color:var(--copper-soft)}
-.ask .sign{position:relative;flex:none;width:14px;height:14px;margin-top:.5rem}
-.ask .sign::before,.ask .sign::after{
-  content:"";position:absolute;background:var(--copper);
-  transition:transform .5s var(--ease),opacity .35s;
-}
-.ask .sign::before{left:0;right:0;top:50%;height:1px;transform:translateY(-50%)}
-.ask .sign::after{top:0;bottom:0;left:50%;width:1px;transform:translateX(-50%)}
-.ask details[open] .sign::after{transform:translateX(-50%) rotate(90deg);opacity:0}
-.ask details p{
-  padding:0 0 1.7rem;max-width:66ch;
-  color:var(--paper-dim);font-size:1rem;
-}
-
-/* ═══════════ 9 · VORGESPRÄCH ═══════════ */
-.talk{
-  position:relative;
-  padding:clamp(4rem,8vw,7rem) 0 clamp(3.5rem,6vw,5rem);
-  background:
-    radial-gradient(46rem 32rem at 78% 12%,rgb(200 138 92 / .13),transparent 60%),
-    linear-gradient(180deg,var(--night-2),#061417);
-}
-.talk__in{display:grid;gap:clamp(3rem,6vw,5rem)}
-@media(min-width:1000px){
-  .talk__in{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(3rem,6vw,6rem);align-items:start}
-}
-.talk h2{max-width:15ch}
-.talk__lead{margin-top:1.7rem;max-width:46ch;color:var(--paper-dim)}
-
-.steps{margin-top:clamp(2.5rem,5vw,3.5rem);display:grid;gap:1.5rem}
-.steps div{display:grid;gap:.35rem}
-.steps b{font-family:var(--serif);font-weight:500;font-size:1.22rem}
-.steps span{color:var(--paper-dim);font-size:.96rem;max-width:46ch}
-
-.form{
-  background:rgb(8 25 28 / .58);
-  border:1px solid var(--hair);
+.vsl-play{
+  width:clamp(58px,7vw,76px);
+  aspect-ratio:1;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgb(255 255 255 / .06);
+  border:1px solid var(--line-hi);
   backdrop-filter:blur(8px);
-  padding:clamp(1.6rem,3.5vw,2.7rem);
 }
-.form h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.35rem,1.2rem + .7vw,1.75rem)}
-.form > p{margin-top:.8rem;color:var(--paper-dim);font-size:.95rem;max-width:40ch}
-.row{margin-top:1.5rem;display:grid;gap:.5rem}
-.row label{font-size:.82rem;color:var(--paper-dim)}
-.row input{
-  width:100%;padding:.95rem .1rem;
-  background:transparent;color:var(--paper);
-  border:none;border-bottom:1px solid var(--hair);
-  font-family:inherit;font-size:1rem;font-weight:300;
-  border-radius:0;
-  transition:border-color .45s var(--ease);
-}
-.row input::placeholder{color:rgb(244 238 228 / .24)}
-.row input:focus{outline:none;border-bottom-color:var(--copper)}
-.form .cta{width:100%;justify-content:space-between;margin-top:2.2rem}
-.note{margin-top:1.3rem;font-size:.79rem;line-height:1.6;color:var(--paper-faint)}
-.said{
-  margin-top:1.1rem;padding-left:.9rem;
-  border-left:1px solid var(--copper);
-  font-size:.88rem;color:var(--sage);
-  display:none;
-}
-.said[data-on="1"]{display:block}
+.vsl-play svg{width:26%;height:26%;fill:var(--ink);margin-left:8%}
+.vsl-empty p{font-size:.9rem;color:var(--ink-3);max-width:26rem}
 
-/* ═══════════ FOOT ═══════════ */
-.foot{background:#061417;padding:clamp(3rem,6vw,4.5rem) 0 2.5rem}
-.foot__in{
-  display:grid;gap:2.5rem;
-  padding-bottom:2.5rem;border-bottom:1px solid var(--hair);
+.unmute{
+  position:absolute;
+  top:clamp(.7rem,1.5vw,1.1rem);
+  right:clamp(.7rem,1.5vw,1.1rem);
+  width:clamp(42px,4.5vw,52px);
+  aspect-ratio:1;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgb(5 14 16 / .74);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--line-hi);
+  cursor:pointer;
+  transition:background .25s,transform .25s var(--ease);
 }
-@media(min-width:820px){.foot__in{grid-template-columns:1.4fr .8fr .8fr;gap:3rem}}
-.foot__claim{
-  margin-top:1.4rem;max-width:26ch;
-  font-family:var(--serif);font-size:clamp(1.3rem,1.15rem + .7vw,1.7rem);
-  line-height:1.22;color:var(--paper-dim);
+.unmute:hover{background:rgb(5 14 16 / .93);transform:scale(1.06)}
+.unmute svg{width:46%;height:46%;fill:none;stroke:var(--ink);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.unmute .on{display:none}
+.unmute[data-muted="false"] .off{display:none}
+.unmute[data-muted="false"] .on{display:block}
+
+/* ─── Sektionen ──────────────────────────────────────────── */
+
+section[id]{scroll-margin-top:5rem}
+
+.sec{padding:clamp(3.5rem,8vw,6.5rem) 0;position:relative}
+.sec-line{border-top:1px solid var(--line)}
+
+.sec-head{
+  text-align:center;
+  max-width:45rem;
+  margin:0 auto clamp(2.4rem,5vw,3.5rem);
 }
-.foot h4{font-size:.82rem;font-weight:500;color:var(--paper)}
-.foot nav{display:grid;gap:.8rem;margin-top:1.2rem}
-.foot nav a{font-size:.92rem;color:var(--paper-faint);transition:color .4s var(--ease)}
-.foot nav a:hover{color:var(--paper)}
-.foot__end{
-  display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-between;
-  padding-top:2rem;font-size:.78rem;color:var(--paper-faint);
+.sec-head .kicker{margin-bottom:1rem}
+.sec-head .lead{margin-top:1.1rem}
+
+/* ─── Karten ─────────────────────────────────────────────── */
+
+.grid{display:grid;gap:1rem}
+.g-2{grid-template-columns:repeat(2,1fr)}
+.g-3{grid-template-columns:repeat(3,1fr)}
+.g-4{grid-template-columns:repeat(4,1fr)}
+
+.card{
+  position:relative;
+  padding:clamp(1.35rem,2.4vw,1.85rem);
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  transition:border-color .3s,background .3s,transform .35s var(--ease),box-shadow .35s;
+}
+.card:hover{
+  border-color:var(--line-hi);
+  background:var(--card-hi);
+  transform:translateY(-3px);
+  box-shadow:0 20px 40px -22px rgb(0 0 0 / .75);
+}
+.card .h-card{margin-bottom:.55rem}
+.card .body{font-size:.95rem;line-height:1.6}
+
+.tag{
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-size:.68rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:.9rem;
+}
+.tag::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+
+.card-warn{background:linear-gradient(160deg,rgb(201 122 106 / .055),transparent 60%)}
+.card-warn .tag{color:var(--warn)}
+.card-warn:hover{border-color:rgb(201 122 106 / .32)}
+
+.card-good{
+  background:linear-gradient(160deg,rgb(217 151 95 / .085),rgb(217 151 95 / .015) 60%);
+  border-color:rgb(217 151 95 / .22);
+}
+.card-good .tag{color:var(--copper)}
+.card-good:hover{border-color:rgb(217 151 95 / .45)}
+
+.card-icon{
+  width:38px;height:38px;
+  display:grid;place-items:center;
+  border-radius:10px;
+  background:rgb(217 151 95 / .1);
+  border:1px solid rgb(217 151 95 / .2);
+  margin-bottom:1rem;
+}
+.card-icon svg{width:17px;height:17px;stroke:var(--copper);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+.ticks{margin-top:.9rem;display:grid;gap:.45rem}
+.ticks li{display:flex;gap:.6rem;font-size:.92rem;color:var(--ink-2);line-height:1.5}
+.ticks li::before{content:"";flex:none;width:4px;height:4px;border-radius:50%;background:var(--copper);margin-top:.62rem}
+
+/* ─── Timeline ───────────────────────────────────────────── */
+
+.tl{position:relative;max-width:56rem;margin-inline:auto;display:grid;gap:.85rem}
+.tl::before{
+  content:"";position:absolute;
+  left:23px;top:20px;bottom:20px;width:1px;
+  background:linear-gradient(180deg,transparent,var(--line-hi) 12%,var(--line-hi) 88%,transparent);
+}
+.tl-item{display:grid;grid-template-columns:48px 1fr;gap:1.1rem;align-items:start}
+.tl-num{
+  position:relative;z-index:2;
+  width:48px;height:48px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:var(--bg-2);
+  border:1px solid rgb(217 151 95 / .3);
+  font-family:var(--display);font-weight:700;font-size:.95rem;
+  color:var(--copper);
+}
+.tl-when{
+  display:block;margin-bottom:.5rem;
+  font-size:.72rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--copper);
 }
 
-/* ═══════════ MOTION ═══════════ */
-.up{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.up.in{opacity:1;transform:none}
+/* ─── Stat-Boxen ─────────────────────────────────────────── */
 
-@media(prefers-reduced-motion:reduce){
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:52rem;margin-inline:auto}
+.stat{
+  text-align:center;
+  padding:clamp(1.4rem,3vw,2rem) 1rem;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+}
+.stat-v{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(1.8rem,1.3rem + 1.9vw,2.7rem);
+  letter-spacing:-.035em;line-height:1;
+  color:var(--copper);
+}
+.stat-l{
+  margin-top:.55rem;
+  font-size:.76rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+
+/* offener Platzhalter — sichtbar, aber nicht laut */
+.slot{border-style:dashed;border-color:rgb(255 255 255 / .1)}
+.slot .stat-v{color:var(--ink-4);letter-spacing:.05em}
+
+.slot-note{
+  margin-top:1.6rem;text-align:center;
+  font-size:.85rem;color:var(--ink-3);
+  display:flex;align-items:center;justify-content:center;gap:.55rem;
+}
+.slot-note::before{
+  content:"";width:5px;height:5px;border-radius:50%;
+  border:1px solid var(--ink-4);
+}
+
+/* ─── Stimmen ────────────────────────────────────────────── */
+
+.quote{display:flex;flex-direction:column;min-height:190px}
+.quote-mark{
+  font-family:var(--display);font-size:2.6rem;line-height:1;
+  color:rgb(217 151 95 / .32);margin-bottom:.35rem;
+}
+.quote-body{flex:1;color:var(--ink-3);font-size:.95rem;line-height:1.6}
+.quote-by{
+  margin-top:1.1rem;padding-top:1rem;
+  border-top:1px solid var(--line);
+  font-size:.85rem;color:var(--ink-4);
+}
+
+/* ─── Person ─────────────────────────────────────────────── */
+
+.person{
+  max-width:46rem;margin-inline:auto;
+  padding:clamp(1.8rem,4vw,2.8rem);
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  text-align:center;
+}
+.person-ph{
+  width:84px;height:84px;margin:0 auto 1.4rem;
+  border-radius:50%;display:grid;place-items:center;
+  background:rgb(255 255 255 / .03);
+  border:1px dashed rgb(255 255 255 / .15);
+}
+.person-ph svg{width:32px;height:32px;stroke:var(--ink-4);fill:none;stroke-width:1.4;stroke-linecap:round}
+.person .d3{margin-bottom:.9rem}
+.person .body{font-size:.97rem}
+.person .body + .body{margin-top:.8rem}
+
+/* ─── Offene Punkte ──────────────────────────────────────── */
+
+.open-list{max-width:44rem;margin:0 auto;display:grid;gap:.5rem}
+.open-list li{
+  display:flex;gap:.75rem;align-items:flex-start;
+  padding:.85rem 1.1rem;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:11px;
+  font-size:.93rem;color:var(--ink-2);
+}
+.open-list li::before{
+  content:"";flex:none;width:6px;height:6px;border-radius:50%;
+  border:1px solid var(--copper);margin-top:.55rem;
+}
+
+/* ─── FAQ ────────────────────────────────────────────────── */
+
+.faq{max-width:48rem;margin-inline:auto;display:grid;gap:.6rem}
+.faq details{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  transition:border-color .3s,background .3s;
+}
+.faq details[open]{border-color:rgb(217 151 95 / .28);background:var(--card-hi)}
+.faq summary{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.05rem 1.3rem;cursor:pointer;list-style:none;
+  font-family:var(--display);font-weight:600;
+  font-size:1.01rem;letter-spacing:-.018em;
+  transition:color .2s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--copper)}
+.faq-ico{flex:none;width:20px;height:20px;position:relative}
+.faq-ico::before,.faq-ico::after{
+  content:"";position:absolute;top:50%;left:50%;
+  background:var(--copper);
+  transform:translate(-50%,-50%);
+  transition:transform .3s var(--ease),opacity .3s;
+}
+.faq-ico::before{width:11px;height:1.5px}
+.faq-ico::after{width:1.5px;height:11px}
+details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+.faq-a{padding:0 1.3rem 1.2rem;color:var(--ink-2);font-size:.95rem;line-height:1.62}
+
+/* ─── Vorgespräch ────────────────────────────────────────── */
+
+.talk{position:relative;overflow:hidden}
+.talk::before{
+  content:"";position:absolute;
+  bottom:-45%;left:50%;
+  width:min(1000px,135vw);aspect-ratio:1;
+  transform:translateX(-50%);
+  background:radial-gradient(circle,rgb(217 151 95 / .1) 0%,transparent 60%);
+  pointer-events:none;
+}
+.talk > *{position:relative}
+
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+  max-width:52rem;margin:0 auto clamp(2.2rem,4vw,3rem);
+}
+.step{text-align:center;padding:1.4rem 1rem}
+.step-n{
+  width:32px;height:32px;margin:0 auto .85rem;
+  display:grid;place-items:center;border-radius:50%;
+  background:rgb(217 151 95 / .12);
+  border:1px solid rgb(217 151 95 / .3);
+  font-family:var(--display);font-weight:700;font-size:.82rem;color:var(--copper);
+}
+.step h3{font-family:var(--display);font-weight:600;font-size:1.02rem;letter-spacing:-.02em;margin-bottom:.4rem}
+.step p{font-size:.9rem;color:var(--ink-3);line-height:1.55}
+
+.form-box{
+  max-width:38rem;margin-inline:auto;
+  padding:clamp(1.6rem,3.5vw,2.4rem);
+  background:linear-gradient(170deg,rgb(255 255 255 / .045),rgb(255 255 255 / .015));
+  border:1px solid var(--line-hi);
+  border-radius:var(--radius);
+  box-shadow:0 30px 70px -30px rgb(0 0 0 / .85);
+}
+.form-grid{display:grid;gap:.85rem;margin-bottom:1.15rem}
+.field label{
+  display:block;margin-bottom:.4rem;
+  font-size:.78rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-3);
+}
+.field input{
+  width:100%;padding:.8rem 1rem;
+  background:rgb(0 0 0 / .3);
+  border:1px solid var(--line);
+  border-radius:10px;font-size:.98rem;
+  transition:border-color .25s,background .25s,box-shadow .25s;
+}
+.field input::placeholder{color:var(--ink-4)}
+.field input:focus{
+  outline:none;
+  border-color:rgb(217 151 95 / .55);
+  background:rgb(0 0 0 / .45);
+  box-shadow:0 0 0 3px rgb(217 151 95 / .1);
+}
+.form-box .btn{width:100%}
+.form-note{margin-top:1rem;font-size:.8rem;color:var(--ink-4);text-align:center;line-height:1.5}
+.form-note.hit{color:var(--copper)}
+
+/* ─── Footer ─────────────────────────────────────────────── */
+
+.foot{border-top:1px solid var(--line);padding:clamp(2.5rem,5vw,3.5rem) 0 2rem}
+.foot-top{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;padding-bottom:2rem}
+.foot-brand{max-width:20rem}
+.foot-brand .brand{margin-bottom:.8rem}
+.foot-brand p{font-size:.9rem;color:var(--ink-3);line-height:1.55}
+.foot-nav{display:flex;gap:3rem;flex-wrap:wrap}
+.foot-nav h4{
+  font-size:.72rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-4);margin-bottom:.9rem;
+}
+.foot-nav ul{display:grid;gap:.5rem}
+.foot-nav a{font-size:.92rem;color:var(--ink-2);transition:color .2s}
+.foot-nav a:hover{color:var(--copper)}
+.foot-bot{
+  border-top:1px solid var(--line);padding-top:1.5rem;
+  display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;
+  font-size:.83rem;color:var(--ink-4);
+}
+
+/* ─── Scroll-Reveal ──────────────────────────────────────── */
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+
+@media (max-width:960px){
+  .g-4{grid-template-columns:repeat(2,1fr)}
+  .nav{display:none}
+  .burger{display:flex}
+  .head-in{gap:.75rem}
+  .head-in .btn-primary{margin-left:auto}
+}
+
+@media (max-width:720px){
+  .g-2,.g-3,.g-4,.stats,.steps{grid-template-columns:1fr}
+  .foot-top{flex-direction:column;gap:2rem}
+  .foot-nav{gap:2rem}
+  .hero-cta .btn{flex:1;min-width:170px}
+  .tl::before{left:18px}
+  .tl-item{grid-template-columns:38px 1fr;gap:.85rem}
+  .tl-num{width:38px;height:38px;font-size:.85rem}
+}
+
+@media (max-width:560px){
+  /* nur der CTA in der Kopfzeile verschwindet — der im Menü bleibt */
+  .head-in .btn-primary{display:none}
+  .marks{gap:.4rem 1rem;font-size:.8rem}
+  .topbar{font-size:.76rem}
+  .brand{font-size:.85rem;letter-spacing:.08em}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
   html{scroll-behavior:auto}
-  .up{opacity:1;transform:none;transition:none}
-  body::after{animation:none}
-  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
 }
-
-.skip{
-  position:absolute;left:1rem;top:-5rem;z-index:70;
-  background:var(--copper);color:#06171A;padding:.8rem 1.2rem;font-size:.85rem;font-weight:600;
-  transition:top .3s var(--ease);
-}
-.skip:focus{top:1rem}
 </style>
 </head>
+
 <body>
 
-<a class="skip" href="#moment">Zum Inhalt</a>
+<div class="topbar">
+  <b>Das Vorgespräch</b> kostet nichts und verpflichtet zu nichts.
+</div>
 
-<!-- ══════ HEADER ══════ -->
-<header class="top" id="top">
-  <div class="wide top__in">
-    <a href="#oben" class="mark" aria-label="Berufswende, zum Seitenanfang">
+<header class="head" id="head">
+  <div class="wrap head-in">
+    <a href="#oben" class="brand" aria-label="Berufswende, zum Seitenanfang">
       <svg viewBox="0 0 100 100" aria-hidden="true">
-        <rect x="1.5" y="1.5" width="97" height="97" rx="17" fill="#0B2426" stroke="#A96C46" stroke-width="2.5"/>
-        <path d="M82 99 H66 a17 17 0 0 0 17-17 Z" fill="#B87D5A"/>
-        <path d="M50 14 L57 44 L50 50 Z" fill="#C88A5C"/><path d="M50 14 L43 44 L50 50 Z" fill="#96653F"/>
-        <path d="M50 86 L43 56 L50 50 Z" fill="#C88A5C"/><path d="M50 86 L57 56 L50 50 Z" fill="#96653F"/>
-        <path d="M14 50 L44 43 L50 50 Z" fill="#C88A5C"/><path d="M14 50 L44 57 L50 50 Z" fill="#96653F"/>
-        <path d="M86 50 L56 57 L50 50 Z" fill="#C88A5C"/><path d="M86 50 L56 43 L50 50 Z" fill="#96653F"/>
-        <rect x="47.5" y="47.5" width="5" height="5" fill="#0B2426"/>
+        <path d="M50 6 L57 43 L50 50 Z" fill="#E8AE79"/><path d="M50 6 L43 43 L50 50 Z" fill="#8E5F38"/>
+        <path d="M50 94 L43 57 L50 50 Z" fill="#E8AE79"/><path d="M50 94 L57 57 L50 50 Z" fill="#8E5F38"/>
+        <path d="M6 50 L43 43 L50 50 Z" fill="#E8AE79"/><path d="M6 50 L43 57 L50 50 Z" fill="#8E5F38"/>
+        <path d="M94 50 L57 57 L50 50 Z" fill="#E8AE79"/><path d="M94 50 L57 43 L50 50 Z" fill="#8E5F38"/>
       </svg>
-      <b>Berufswende</b>
+      Berufswende
     </a>
 
-    <nav aria-label="Seitenbereiche">
-      <a href="#lernen">Worum es geht</a>
+    <nav class="nav" aria-label="Seitenbereiche">
+      <a href="#worum">Worum es geht</a>
+      <a href="#lernen">Was du lernst</a>
       <a href="#ablauf">Ablauf</a>
       <a href="#passung">Passung</a>
-      <a href="#wer">Wer dahinter steht</a>
       <a href="#fragen">Fragen</a>
     </nav>
 
-    <a href="#gespraech" class="cta">
-      Reden wir kurz
-      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-    </a>
+    <a href="#gespraech" class="btn btn-primary">Rückruf anfragen</a>
 
-    <button class="tog" id="tog" aria-expanded="false" aria-controls="sheet" aria-label="Menü öffnen">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen"><i></i></button>
+  </div>
+
+  <div class="mnav wrap" id="mnav">
+    <ul>
+      <li><a href="#worum">Worum es geht</a></li>
+      <li><a href="#lernen">Was du lernst</a></li>
+      <li><a href="#ablauf">Ablauf</a></li>
+      <li><a href="#passung">Passung</a></li>
+      <li><a href="#wer">Wer dahinter steht</a></li>
+      <li><a href="#fragen">Fragen</a></li>
+    </ul>
+    <a href="#gespraech" class="btn btn-primary">Rückruf anfragen</a>
   </div>
 </header>
 
-<div class="sheet" id="sheet" data-open="0">
-  <div class="wide">
-    <nav aria-label="Seitenbereiche mobil">
-      <a href="#lernen">Worum es geht</a>
-      <a href="#ablauf">Ablauf</a>
-      <a href="#passung">Passung</a>
-      <a href="#wer">Wer dahinter steht</a>
-      <a href="#fragen">Fragen</a>
-    </nav>
-    <a href="#gespraech" class="cta">
-      Reden wir kurz
-      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-    </a>
-  </div>
-</div>
+<main id="oben">
 
-<main>
-
-<!-- ══════ 1 · HERO / VSL ══════ -->
-<section class="hero" id="oben">
-  <div class="hero__light" id="light"></div>
-
-  <div class="hero__in wide">
-    <div class="hero__grid">
-
-      <div>
-        <h1 class="set set-xl">Nicht kündigen. Erst mal <span class="once">herausfinden</span>, ob es passt.</h1>
-        <p class="hero__sub">Online-Beratung ist etwas, das man lernen kann. Neben dem, was ohnehin läuft. Und bevor du irgendetwas aufgibst, findest du heraus, ob die Sache überhaupt zu dir gehört.</p>
-
-        <div class="hero__act">
-          <a href="#gespraech" class="cta">
-            Reden wir kurz
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-          </a>
-          <a href="#lernen" class="quiet">
-            Worum es genau geht
-            <svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M5 0v10M1 6l4 4 4-4" stroke="currentColor" stroke-width="1.2"/></svg>
-          </a>
-        </div>
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="wrap">
+      <h1 class="d1 rv">
+        Nicht kündigen.<br>
+        <span class="accent">Erst herausfinden, ob es passt.</span>
+      </h1>
+      <p class="lead rv">
+        Online-Beratung ist etwas, das man lernen kann. Neben dem, was ohnehin läuft.
+        Und bevor du irgendetwas aufgibst, findest du heraus, ob die Sache überhaupt zu dir gehört.
+      </p>
+      <div class="hero-cta rv">
+        <a href="#gespraech" class="btn btn-primary btn-lg">
+          Rückruf anfragen
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#ablauf" class="btn btn-ghost btn-lg">Wie es abläuft</a>
       </div>
+      <ul class="marks rv">
+        <li>Vorgespräch kostenlos</li>
+        <li>Keine Verpflichtung</li>
+        <li>Neben dem Beruf</li>
+      </ul>
+    </div>
+  </section>
 
-      <div class="vsl">
-        <div class="vsl__stage" id="stage">
-          <video id="vsl" playsinline preload="none"
-                 aria-label="Berufswende im Gespräch — Video folgt">
-            <!-- Sobald der finale VSL vorliegt: hier die Quelle eintragen und poster= setzen.
-                 <source src="vsl.mp4" type="video/mp4"> -->
-          </video>
+  <!-- ══ VSL ══ -->
+  <section class="vsl-sec" id="vsl-sec">
+    <div class="wrap">
+      <div class="vsl rv">
 
-          <button class="vsl__play" id="play" type="button" aria-label="Video abspielen">
-            <svg width="22" height="26" viewBox="0 0 22 26" aria-hidden="true"><path d="M0 0v26l22-13L0 0Z"/></svg>
-          </button>
+        <!-- ▼▼ VSL EINHÄNGEN ▼▼
+             1. poster="…" auf ein Standbild setzen
+             2. <source src="…"> auf die Videodatei setzen
+             3. den Block <div class="vsl-empty"> darunter löschen
+             Alles andere (Autoplay stumm, Unmute-Button, Pause außerhalb des Bildes) läuft dann von selbst.
 
-          <div class="vsl__over" id="over">
-            <p>Wie das aussieht, wenn man es ruhig angeht.</p>
-          </div>
+        <video id="vsl" autoplay muted loop playsinline preload="metadata" poster="">
+          <source src="" type="video/mp4">
+        </video>
+        <button class="unmute" id="unmute" type="button" data-muted="true" aria-label="Ton einschalten">
+          <svg class="off" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="m17 9 5 5m0-5-5 5"/></svg>
+          <svg class="on" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+        </button>
+        ▲▲ VSL EINHÄNGEN ▲▲ -->
+
+        <div class="vsl-empty">
+          <div class="vsl-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <p>Hier läuft das Video. Es ist eingeplant und wird eingehängt, sobald die Datei freigegeben ist.</p>
         </div>
 
-        <div class="vsl__foot">
-          <span id="vslState">Video folgt · Einbindung ist vorbereitet</span>
-          <span>Laufzeit nach Freigabe</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WORUM ES GEHT ══ -->
+  <section class="sec sec-line" id="worum">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">Der Moment davor</span>
+        <h2 class="d2">Irgendwann fällt der Gedanke<br><span class="accent">nicht mehr weg.</span></h2>
+      </div>
+      <div class="grid g-2">
+        <article class="card card-warn rv">
+          <span class="tag">Problem</span>
+          <h3 class="h-card">Es hört nicht mehr auf</h3>
+          <p class="body">Nicht laut. Kein Aussteigerplan, keine Kündigung im Kopf. Eher die Frage, ob das jetzt die nächsten zwanzig Jahre so weitergeht.</p>
+        </article>
+        <article class="card card-warn rv">
+          <span class="tag">Problem</span>
+          <h3 class="h-card">Und wovon lebst du solange?</h3>
+          <p class="body">Der zweite Gedanke kommt sofort hinterher. Genau da hört es bei den meisten auf, noch bevor irgendetwas angefangen hat.</p>
+        </article>
+        <article class="card card-warn rv">
+          <span class="tag">Problem</span>
+          <h3 class="h-card">Dazwischen liegt nichts</h3>
+          <p class="body">Zwischen „darüber nachdenken“ und „alles hinwerfen“ gibt es keinen Schritt. Nicht weil die Idee schlecht war, sondern weil ihn niemand gebaut hat.</p>
+        </article>
+        <article class="card card-good rv">
+          <span class="tag">Der Weg</span>
+          <h3 class="h-card">Berufswende ist dieser Schritt dazwischen</h3>
+          <p class="body">Du baust etwas Zweites auf, neben dem was ohnehin läuft. Und entscheidest erst danach, welchen Platz es bekommen soll.</p>
+          <ul class="ticks">
+            <li>Kein Kursportal, in dem du allein bist</li>
+            <li>Persönliche Begleitung statt Videobibliothek</li>
+            <li>Du gibst vorher nichts auf</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WAS DU LERNST ══ -->
+  <section class="sec sec-line" id="lernen">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">Das Handwerk</span>
+        <h2 class="d2">Du lernst,<br><span class="accent">Gespräche zu führen.</span></h2>
+        <p class="lead">
+          Online-Beratung klingt nach Technik. Ist es aber nicht. Es geht darum, mit jemandem zu sprechen,
+          der eine Entscheidung vor sich hat, und ihm dabei zu helfen, sie zu treffen.
+          Das ist Handwerk. Und Handwerk kann man üben.
+        </p>
+      </div>
+      <div class="grid g-4">
+        <article class="card rv">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><path d="M21 14v3a2 2 0 0 1-2 2h-2"/><rect x="2" y="12" width="4" height="6" rx="1.6"/><rect x="18" y="12" width="4" height="6" rx="1.6"/></svg></div>
+          <h3 class="h-card">Bedarf verstehen</h3>
+          <p class="body">Herausfinden, was jemand wirklich braucht. Nicht, was er zuerst sagt.</p>
+        </article>
+        <article class="card rv">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.4c-.7.3-1 .9-1 1.6v.4"/><path d="M12 17.1h.01"/></svg></div>
+          <h3 class="h-card">Klare Fragen stellen</h3>
+          <p class="body">Nachfragen, ohne zu bohren. Aushalten, wenn jemand unsicher ist.</p>
+        </article>
+        <article class="card rv">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h9M4 17h6"/><path d="m15.5 15.5 2.2 2.2 4.1-4.4"/></svg></div>
+          <h3 class="h-card">Einwände einordnen</h3>
+          <p class="body">Merken, wann ein Nein ein Nein ist. Und wann es eine offene Frage ist.</p>
+        </article>
+        <article class="card rv">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 12h9m0 0-3-3m3 3-3 3"/><path d="M14 4.5h5.5A1.5 1.5 0 0 1 21 6v12a1.5 1.5 0 0 1-1.5 1.5H14"/></svg></div>
+          <h3 class="h-card">Entscheidungen begleiten</h3>
+          <p class="body">Jemanden sauber durch eine Entscheidung führen, ohne zu drängen.</p>
+        </article>
+      </div>
+      <p class="lead rv" style="max-width:45rem;margin:2.2rem auto 0;text-align:center">
+        Keine auswendig gelernten Sätze, keine Tricks, mit denen man Leute überredet.
+        Was dabei entsteht, bleibt dir — das brauchst du in jedem Beruf, in dem Menschen vorkommen.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ ABLAUF ══ -->
+  <section class="sec sec-line" id="ablauf">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">Der Ablauf</span>
+        <h2 class="d2">Vier Etappen,<br><span class="accent">in deinem Tempo.</span></h2>
+      </div>
+      <div class="tl">
+        <div class="tl-item rv">
+          <div class="tl-num">1</div>
+          <article class="card">
+            <span class="tl-when">Zuerst</span>
+            <h3 class="h-card">Wir telefonieren einmal in Ruhe</h3>
+            <p class="body">Deine Situation, dein Ziel, wie viel Zeit realistisch übrig bleibt. Am Ende weißt du, ob das hier überhaupt etwas für dich ist. Wenn nicht, sagen wir dir das.</p>
+          </article>
+        </div>
+        <div class="tl-item rv">
+          <div class="tl-num">2</div>
+          <article class="card">
+            <span class="tl-when">Dann</span>
+            <h3 class="h-card">Du lernst die Grundlagen</h3>
+            <p class="body">Wie ein Gespräch aufgebaut ist, wie du herausfindest, was jemand wirklich braucht, und wie du jemanden durch eine Entscheidung begleitest, ohne zu drängen.</p>
+          </article>
+        </div>
+        <div class="tl-item rv">
+          <div class="tl-num">3</div>
+          <article class="card">
+            <span class="tl-when">Danach</span>
+            <h3 class="h-card">Du übst, und jemand hört zu</h3>
+            <p class="body">Der Teil, der wirklich zählt. Du führst Gespräche, wir schauen sie uns gemeinsam an. Wo es hakt, reden wir darüber, statt dich damit allein zu lassen.</p>
+          </article>
+        </div>
+        <div class="tl-item rv">
+          <div class="tl-num">4</div>
+          <article class="card">
+            <span class="tl-when">Irgendwann</span>
+            <h3 class="h-card">Du brauchst uns nicht mehr dafür</h3>
+            <p class="body">Du hast deinen Rhythmus gefunden und weißt aus eigener Erfahrung, welchen Platz das in deinem Leben bekommen soll. Diese Entscheidung triffst dann du.</p>
+          </article>
         </div>
       </div>
-
     </div>
+  </section>
 
-    <div class="scroll-hint">
-      <i></i>
-      <span>Weiterlesen</span>
+  <!-- ══ ZAHLEN ══ -->
+  <section class="sec sec-line">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">In Zahlen</span>
+        <h2 class="d2">Was sich <span class="accent">belegen lässt.</span></h2>
+      </div>
+      <div class="stats">
+        <!-- Werte eintragen: .stat-v = Zahl, .stat-l = Bezeichnung, dann class "slot" entfernen -->
+        <div class="stat slot rv"><div class="stat-v">—</div><div class="stat-l">Kennzahl 1</div></div>
+        <div class="stat slot rv"><div class="stat-v">—</div><div class="stat-l">Kennzahl 2</div></div>
+        <div class="stat slot rv"><div class="stat-v">—</div><div class="stat-l">Kennzahl 3</div></div>
+      </div>
+      <p class="slot-note rv">Die Werte kommen hier rein, sobald sie freigegeben sind. Bis dahin steht hier keine Zahl.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 2 · DER MOMENT DAVOR ══════ -->
-<section class="moment" id="moment">
-  <div class="mid">
-    <p class="lit">Irgendwann fällt der Gedanke nicht mehr weg.</p>
-    <p>Nicht laut. Kein Aussteigerplan, keine Kündigung im Kopf. Eher die Frage, ob das jetzt die nächsten zwanzig Jahre so weitergeht.</p>
-    <p class="lit">Und dann kommt sofort der zweite Gedanke: Und wovon lebe ich in der Zwischenzeit?</p>
-
-    <p class="after">Genau da hört es bei den meisten auf. Nicht weil die Idee schlecht war, sondern weil zwischen „darüber nachdenken" und „alles hinwerfen" nichts liegt. Berufswende ist der Versuch, diesen Schritt dazwischen zu bauen.</p>
-  </div>
-</section>
-
-<!-- ══════ 3 · WAS DU LERNST ══════ -->
-<section class="learn" id="lernen">
-  <div class="wide learn__grid">
-    <h2 class="set set-l up">Du lernst, Gespräche zu führen.</h2>
-
-    <div class="learn__body up">
-      <p>Online-Beratung klingt nach Technik. Ist es aber nicht. Es geht darum, mit jemandem zu sprechen, der eine Entscheidung vor sich hat, und ihm dabei zu helfen, sie zu treffen. Zuhören. Nachfragen. Aushalten, wenn jemand unsicher ist. Merken, wann ein Nein ein Nein ist.</p>
-
-      <p class="pull">Das ist Handwerk. Und Handwerk kann man üben.</p>
-
-      <p>Du bekommst einen Gesprächsrahmen, an dem du dich festhalten kannst, solange du ihn noch brauchst. Du übst mit jemandem, der zuhört und dir hinterher sagt, was funktioniert hat und was nicht. Keine auswendig gelernten Sätze, keine Tricks, mit denen man Leute überredet.</p>
-
-      <p>Was dabei entsteht, bleibt dir. Bedarf verstehen, klare Fragen stellen, Einwände einordnen, eine Entscheidung sauber begleiten: Das brauchst du in jedem Beruf, in dem Menschen vorkommen.</p>
+  <!-- ══ STIMMEN ══ -->
+  <section class="sec sec-line">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">Stimmen</span>
+        <h2 class="d2">Von Menschen, die den Weg<br><span class="accent">wirklich gegangen sind.</span></h2>
+      </div>
+      <div class="grid g-3">
+        <!-- Zitat + Name eintragen, dann class "slot" entfernen -->
+        <article class="card quote slot rv">
+          <div class="quote-mark">„</div>
+          <p class="quote-body">Platz für eine Rückmeldung im Originalwortlaut, sobald sie vorliegt und freigegeben ist.</p>
+          <div class="quote-by">Name folgt</div>
+        </article>
+        <article class="card quote slot rv">
+          <div class="quote-mark">„</div>
+          <p class="quote-body">Platz für eine Rückmeldung im Originalwortlaut, sobald sie vorliegt und freigegeben ist.</p>
+          <div class="quote-by">Name folgt</div>
+        </article>
+        <article class="card quote slot rv">
+          <div class="quote-mark">„</div>
+          <p class="quote-body">Platz für eine Rückmeldung im Originalwortlaut, sobald sie vorliegt und freigegeben ist.</p>
+          <div class="quote-by">Name folgt</div>
+        </article>
+      </div>
+      <p class="slot-note rv">Nichts davon wird erfunden. Diese Karten bleiben leer, bis echte Stimmen da sind.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 4 · WIE ES ABLÄUFT ══════ -->
-<section class="path" id="ablauf">
-  <div class="mid">
-    <h2 class="set set-l up">Vier Etappen, in deinem Tempo.</h2>
-
-    <div class="track" id="track">
-      <div class="track__fill" id="fill"></div>
-
-      <div class="stop up">
-        <p class="stop__when">Zuerst</p>
-        <h3 class="set set-s">Wir telefonieren einmal in Ruhe</h3>
-        <p>Deine Situation, dein Ziel, wie viel Zeit realistisch übrig bleibt. Am Ende weißt du, ob das hier überhaupt etwas für dich ist. Wenn nicht, sagen wir dir das.</p>
+  <!-- ══ PASSUNG ══ -->
+  <section class="sec sec-line" id="passung">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">Passung</span>
+        <h2 class="d2">Für manche ist das hier <span class="accent">nichts.</span></h2>
+        <p class="lead">Das vorweg, damit niemand seine Zeit verliert. Wenn einer dieser Punkte auf dich zutrifft, wäre ein anderer Weg ehrlicher.</p>
+      </div>
+      <div class="grid g-2">
+        <article class="card card-warn rv">
+          <span class="tag">Dann nicht</span>
+          <h3 class="h-card">Du brauchst nächsten Monat Geld</h3>
+          <p class="body">Dann ist das hier der falsche Weg. Das dauert, und wir nennen dir bewusst keinen Zeitpunkt, den wir nicht halten können.</p>
+        </article>
+        <article class="card card-warn rv">
+          <span class="tag">Dann nicht</span>
+          <h3 class="h-card">Du willst etwas kaufen, das für dich arbeitet</h3>
+          <p class="body">Gibt es hier nicht. Die Arbeit machst du, wir zeigen dir wie.</p>
+        </article>
+        <article class="card card-warn rv">
+          <span class="tag">Dann nicht</span>
+          <h3 class="h-card">Du hast keine zwei verlässlichen Abende pro Woche</h3>
+          <p class="body">Zwischendurch mal zwanzig Minuten bringt nichts. Lieber später anfangen, wenn wirklich Zeit da ist.</p>
+        </article>
+        <article class="card card-warn rv">
+          <span class="tag">Dann nicht</span>
+          <h3 class="h-card">Du willst gesagt bekommen, was du sagen sollst</h3>
+          <p class="body">Wir korrigieren dich, und das ist nicht immer angenehm. Wer das nicht will, wird damit nicht glücklich.</p>
+        </article>
       </div>
 
-      <div class="stop up">
-        <p class="stop__when">Dann</p>
-        <h3 class="set set-s">Du lernst die Grundlagen</h3>
-        <p>Wie ein Gespräch aufgebaut ist, wie du herausfindest, was jemand wirklich braucht, und wie du jemanden durch eine Entscheidung begleitest, ohne zu drängen.</p>
-      </div>
-
-      <div class="stop up">
-        <p class="stop__when">Danach</p>
-        <h3 class="set set-s">Du übst, und jemand hört zu</h3>
-        <p>Der Teil, der wirklich zählt. Du führst Gespräche, wir schauen sie uns gemeinsam an. Wo es hakt, reden wir darüber, statt dich damit allein zu lassen.</p>
-      </div>
-
-      <div class="stop up">
-        <p class="stop__when">Irgendwann</p>
-        <h3 class="set set-s">Du brauchst uns nicht mehr dafür</h3>
-        <p>Du hast deinen Rhythmus gefunden und weißt aus eigener Erfahrung, welchen Platz das in deinem Leben bekommen soll. Diese Entscheidung triffst dann du.</p>
+      <div class="card card-good rv" style="max-width:46rem;margin:1.5rem auto 0;text-align:center">
+        <h3 class="d3" style="margin-bottom:.7rem">Und wenn nichts davon zutrifft?</h3>
+        <p class="body">
+          Dann brauchst du kein Talent und keine Vorerfahrung. Du musst reden können und zuhören wollen.
+          Volljährig sein und selbst entscheiden. Und bereit sein, etwas über Monate zu bauen statt über ein Wochenende.
+        </p>
+        <a href="#gespraech" class="btn btn-primary" style="margin-top:1.4rem">
+          Dann lass uns telefonieren
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 5 · FÜR WEN DAS NICHTS IST ══════ -->
-<section class="fit" id="passung">
-  <div class="mid">
-    <h2 class="set set-l up">Für manche ist das hier nichts.</h2>
-    <p class="fit__lead up">Das vorweg, damit niemand seine Zeit verliert. Wenn einer dieser Punkte auf dich zutrifft, wäre ein anderer Weg ehrlicher.</p>
-
-    <ul class="no up">
-      <li>
-        <b>Du brauchst nächsten Monat Geld.</b>
-        <span>Dann ist das hier der falsche Weg. Das dauert, und wir nennen dir bewusst keinen Zeitpunkt, den wir nicht halten können.</span>
-      </li>
-      <li>
-        <b>Du willst etwas kaufen, das für dich arbeitet.</b>
-        <span>Gibt es hier nicht. Die Arbeit machst du, wir zeigen dir wie.</span>
-      </li>
-      <li>
-        <b>Du hast keine zwei verlässlichen Abende pro Woche.</b>
-        <span>Zwischendurch mal zwanzig Minuten bringt nichts. Lieber später anfangen, wenn wirklich Zeit da ist.</span>
-      </li>
-      <li>
-        <b>Du willst gesagt bekommen, was du sagen sollst.</b>
-        <span>Wir korrigieren dich, und das ist nicht immer angenehm. Wer das nicht will, wird damit nicht glücklich.</span>
-      </li>
-    </ul>
-
-    <div class="yes up">
-      <h3 class="set set-m">Und wenn nichts davon zutrifft?</h3>
-      <div>
-        <p>Dann brauchst du kein Talent und keine Vorerfahrung. Du musst reden können und zuhören wollen. Volljährig sein und selbst entscheiden. Und bereit sein, etwas über Monate zu bauen statt über ein Wochenende.</p>
-        <p style="margin-top:1.6rem">
-          <a href="#gespraech" class="quiet">
-            Dann lass uns telefonieren
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-          </a>
+  <!-- ══ WER DAHINTER STEHT ══ -->
+  <section class="sec sec-line" id="wer">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">Wer dahinter steht</span>
+        <h2 class="d2">Es gibt hier eine Person,<br><span class="accent">keine Marke.</span></h2>
+      </div>
+      <div class="person rv">
+        <div class="person-ph">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.5"/><path d="M5.5 19.5a7 7 0 0 1 13 0"/></svg>
+        </div>
+        <h3 class="d3">Name und Gesicht kommen hierher.</h3>
+        <p class="body">
+          Wer dich begleitet, wer das aufgebaut hat und was diese Person vorher gemacht hat, gehört auf diese Seite.
+          Ausgeschrieben, mit Namen und Gesicht.
+        </p>
+        <p class="body">
+          Nur steht es noch nicht da. Nicht weil es niemanden gäbe, sondern weil wir Angaben zu einem Werdegang erst
+          veröffentlichen, wenn sie nachprüfbar sind. Bis dahin behauptet diese Seite an keiner Stelle Erfahrung,
+          die sie nicht belegen kann.
         </p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 6 · WER DAHINTER STEHT ══════ -->
-<section class="who" id="wer">
-  <div class="wide who__in">
-    <div class="who__frame up">
-      <svg viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M50 4 L57 44 L50 50 Z" fill="#C88A5C"/><path d="M50 4 L43 44 L50 50 Z" fill="#7C5537"/>
-        <path d="M50 96 L43 56 L50 50 Z" fill="#C88A5C"/><path d="M50 96 L57 56 L50 50 Z" fill="#7C5537"/>
-        <path d="M4 50 L44 43 L50 50 Z" fill="#C88A5C"/><path d="M4 50 L44 57 L50 50 Z" fill="#7C5537"/>
-        <path d="M96 50 L56 57 L50 50 Z" fill="#C88A5C"/><path d="M96 50 L56 43 L50 50 Z" fill="#7C5537"/>
-      </svg>
-      <span>Hier steht demnächst ein Foto und ein Name. Beides kommt, sobald es geprüft ist.</span>
-    </div>
-
-    <div class="up">
-      <h2 class="set set-l">Es gibt hier eine Person, keine Marke.</h2>
-      <p>Wer dich begleitet, wer das aufgebaut hat und was diese Person vorher gemacht hat, gehört auf diese Seite. Ausgeschrieben, mit Namen und Gesicht.</p>
-      <p>Nur steht es noch nicht da. Nicht weil es niemanden gäbe, sondern weil wir Angaben zu einem Werdegang erst veröffentlichen, wenn sie nachprüfbar sind. Bis dahin behauptet diese Seite an keiner Stelle Erfahrung, die sie nicht belegen kann.</p>
-      <p class="sig">Kommt. Und dann steht es hier.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ 7 · WAS HIER NOCH FEHLT ══════ -->
-<section class="open">
-  <div class="narrow">
-    <h2 class="set set-m up">Was auf dieser Seite noch fehlt.</h2>
-    <div class="up">
-      <p>Andere Seiten hätten hier eine Reihe Bewertungssterne, ein paar Logos von Portalen und drei Erfolgsgeschichten mit Vornamen. Das ließe sich in einer Stunde erfinden.</p>
-      <p>Wir lassen die Stellen lieber leer, bis sie stimmen. Offen sind gerade:</p>
-      <ul class="list">
+  <!-- ══ WAS NOCH FEHLT ══ -->
+  <section class="sec sec-line">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">Offen</span>
+        <h2 class="d2">Was auf dieser Seite <span class="accent">noch fehlt.</span></h2>
+        <p class="lead">
+          Andere Seiten hätten hier eine Reihe Bewertungssterne, ein paar Logos und drei Erfolgsgeschichten mit Vornamen.
+          Das ließe sich in einer Stunde erfinden. Wir lassen die Stellen lieber leer, bis sie stimmen.
+        </p>
+      </div>
+      <ul class="open-list rv">
         <li>Erfahrungsberichte von Menschen, die den Weg wirklich gegangen sind</li>
         <li>Qualifikationsnachweise und die Angaben zur verantwortlichen Person</li>
         <li>Das Gespräch als Video, oben auf dieser Seite</li>
+        <li>Impressum und Datenschutzerklärung</li>
       </ul>
-      <p style="margin-top:2.2rem">Sobald etwas davon vorliegt und freigegeben ist, steht es hier. Nicht vorher.</p>
+      <p class="slot-note rv">Sobald etwas davon vorliegt und freigegeben ist, steht es hier. Nicht vorher.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 8 · FRAGEN ══════ -->
-<section class="ask" id="fragen">
-  <div class="mid">
-    <h2 class="set set-l up">Was meistens gefragt wird.</h2>
-
-    <div class="up">
-      <details open>
-        <summary>Kostet das Gespräch etwas?<span class="sign" aria-hidden="true"></span></summary>
-        <p>Nein. Und es entsteht daraus auch keine Verpflichtung. Ob danach eine Zusammenarbeit Sinn ergibt und was sie kostet, besprechen wir offen, bevor du dich entscheidest.</p>
-      </details>
-
-      <details>
-        <summary>Was ist Berufswende eigentlich genau?<span class="sign" aria-hidden="true"></span></summary>
-        <p>Eine persönliche Begleitung für Erwachsene, die sich neben dem Beruf etwas Zweites aufbauen wollen: professionelle Beratung am Telefon und online. Kein Kursportal, bei dem du dich einloggst und allein bist. Es geht um Gesprächsführung, Üben und ehrliche Rückmeldung.</p>
-      </details>
-
-      <details>
-        <summary>Wie lange dauert das?<span class="sign" aria-hidden="true"></span></summary>
-        <p>Das hängt von deiner Ausgangslage ab, von der Zeit, die du hast, und davon, wie ernsthaft du übst. Wir nennen bewusst keine Wochenzahl, weil wir sie nicht garantieren könnten. Im Vorgespräch bekommst du eine realistische Einschätzung, wie der Ablauf aussieht. Ohne Versprechen über Erfolg oder Einkommen.</p>
-      </details>
-
-      <details>
-        <summary>Was brauche ich dafür?<span class="sign" aria-hidden="true"></span></summary>
-        <p>Laptop, Telefon und feste Zeitfenster, die du wirklich freihältst. Mehr nicht. Dein Alltag muss dafür nicht umgebaut werden, er ist der Rahmen, in dem das stattfindet.</p>
-      </details>
-
-      <details>
-        <summary>Warum wollt ihr meine Telefonnummer?<span class="sign" aria-hidden="true"></span></summary>
-        <p>Weil das Vorgespräch ein Telefonat ist. Wir rufen einmal an, um genau das auszumachen. Kein Verteiler, keine Weitergabe. Vor dem Livebetrieb kommen die Datenschutzerklärung und der technische Übermittlungsweg dazu.</p>
-      </details>
+  <!-- ══ FAQ ══ -->
+  <section class="sec sec-line" id="fragen">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">Fragen</span>
+        <h2 class="d2">Was meistens <span class="accent">gefragt wird.</span></h2>
+      </div>
+      <div class="faq rv">
+        <details open>
+          <summary>Kostet das Gespräch etwas?<span class="faq-ico" aria-hidden="true"></span></summary>
+          <div class="faq-a">Nein. Und es entsteht daraus auch keine Verpflichtung. Ob danach eine Zusammenarbeit Sinn ergibt und was sie kostet, besprechen wir offen, bevor du dich entscheidest.</div>
+        </details>
+        <details>
+          <summary>Was ist Berufswende eigentlich genau?<span class="faq-ico" aria-hidden="true"></span></summary>
+          <div class="faq-a">Eine persönliche Begleitung für Erwachsene, die sich neben dem Beruf etwas Zweites aufbauen wollen: professionelle Beratung am Telefon und online. Kein Kursportal, bei dem du dich einloggst und allein bist. Es geht um Gesprächsführung, Üben und ehrliche Rückmeldung.</div>
+        </details>
+        <details>
+          <summary>Wie lange dauert das?<span class="faq-ico" aria-hidden="true"></span></summary>
+          <div class="faq-a">Das hängt von deiner Ausgangslage ab, von der Zeit, die du hast, und davon, wie ernsthaft du übst. Wir nennen bewusst keine Wochenzahl, weil wir sie nicht garantieren könnten. Im Vorgespräch bekommst du eine realistische Einschätzung, wie der Ablauf aussieht. Ohne Versprechen über Erfolg oder Einkommen.</div>
+        </details>
+        <details>
+          <summary>Was brauche ich dafür?<span class="faq-ico" aria-hidden="true"></span></summary>
+          <div class="faq-a">Laptop, Telefon und feste Zeitfenster, die du wirklich freihältst. Mehr nicht. Dein Alltag muss dafür nicht umgebaut werden, er ist der Rahmen, in dem das stattfindet.</div>
+        </details>
+        <details>
+          <summary>Warum wollt ihr meine Telefonnummer?<span class="faq-ico" aria-hidden="true"></span></summary>
+          <div class="faq-a">Weil das Vorgespräch ein Telefonat ist. Wir rufen einmal an, um genau das auszumachen. Kein Verteiler, keine Weitergabe. Vor dem Livebetrieb kommen die Datenschutzerklärung und der technische Übermittlungsweg dazu.</div>
+        </details>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 9 · VORGESPRÄCH ══════ -->
-<section class="talk" id="gespraech">
-  <div class="wide talk__in">
-
-    <div class="up">
-      <h2 class="set set-l">Ein Telefonat. Danach weißt du mehr.</h2>
-      <p class="talk__lead">Kein Termin mit Verkaufsgespräch dahinter. Wir reden über deine Lage, du fragst, was du wissen willst, und danach entscheidest du in Ruhe.</p>
+  <!-- ══ VORGESPRÄCH ══ -->
+  <section class="sec sec-line talk" id="gespraech">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">Nächster Schritt</span>
+        <h2 class="d2">Ein Telefonat.<br><span class="accent">Danach weißt du mehr.</span></h2>
+        <p class="lead">Kein Termin mit Verkaufsgespräch dahinter. Wir reden über deine Lage, du fragst, was du wissen willst, und danach entscheidest du in Ruhe.</p>
+      </div>
 
       <div class="steps">
-        <div>
-          <b>Du hinterlässt deine Nummer</b>
-          <span>Name, E-Mail, Telefon. Mehr wollen wir gar nicht.</span>
+        <div class="step rv">
+          <div class="step-n">1</div>
+          <h3>Du hinterlässt deine Nummer</h3>
+          <p>Name, E-Mail, Telefon. Mehr wollen wir gar nicht.</p>
         </div>
-        <div>
-          <b>Wir rufen an</b>
-          <span>Einmal, in Ruhe. Wir klären dein Ziel, deine Zeit und ob das grundsätzlich zusammenpasst.</span>
+        <div class="step rv">
+          <div class="step-n">2</div>
+          <h3>Wir rufen an</h3>
+          <p>Einmal, in Ruhe. Wir klären dein Ziel, deine Zeit und ob das zusammenpasst.</p>
         </div>
-        <div>
-          <b>Und dann entscheidest du</b>
-          <span>Nur wenn beide Seiten es für sinnvoll halten, sprechen wir über den nächsten Schritt.</span>
+        <div class="step rv">
+          <div class="step-n">3</div>
+          <h3>Und dann entscheidest du</h3>
+          <p>Nur wenn beide Seiten es für sinnvoll halten, sprechen wir über den nächsten Schritt.</p>
         </div>
       </div>
+
+      <form class="form-box rv" id="form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Vor- und Nachname" required>
+          </div>
+          <div class="field">
+            <label for="f-mail">E-Mail</label>
+            <input id="f-mail" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de" required>
+          </div>
+          <div class="field">
+            <label for="f-tel">Telefon</label>
+            <input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="Für den Rückruf" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">
+          Rückruf anfragen
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="form-note" id="form-note" role="status">
+          Dieses Formular ist noch eine Demo und verschickt nichts.
+          Empfänger, Übermittlungsweg und Datenschutzerklärung werden vor dem Livegang eingerichtet.
+        </p>
+      </form>
     </div>
-
-    <div class="up">
-      <div class="form">
-        <h3>Rückruf anfragen</h3>
-        <p>Trag ein, wie wir dich erreichen. Wir melden uns für ein ruhiges Gespräch zurück.</p>
-
-        <form id="lead" novalidate>
-          <div class="row">
-            <label for="n">Name</label>
-            <input id="n" name="name" type="text" autocomplete="name" placeholder="Wie heißt du?" required>
-          </div>
-          <div class="row">
-            <label for="m">E-Mail</label>
-            <input id="m" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de" required>
-          </div>
-          <div class="row">
-            <label for="t">Telefon</label>
-            <input id="t" name="phone" type="tel" autocomplete="tel" placeholder="Für den Rückruf" required>
-          </div>
-
-          <button type="submit" class="cta">
-            Rückruf anfragen
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-          </button>
-
-          <p class="said" id="said" role="status"></p>
-        </form>
-
-        <p class="note">Dieses Formular ist noch eine Demo und verschickt nichts. Empfänger, Übermittlungsweg und Datenschutzerklärung werden vor dem Livegang eingerichtet.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
+  </section>
 
 </main>
 
-<!-- ══════ FOOT ══════ -->
 <footer class="foot">
-  <div class="wide">
-    <div class="foot__in">
-      <div>
-        <div class="mark">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">
           <svg viewBox="0 0 100 100" aria-hidden="true">
-            <rect x="1.5" y="1.5" width="97" height="97" rx="17" fill="#0B2426" stroke="#A96C46" stroke-width="2.5"/>
-            <path d="M82 99 H66 a17 17 0 0 0 17-17 Z" fill="#B87D5A"/>
-            <path d="M50 14 L57 44 L50 50 Z" fill="#C88A5C"/><path d="M50 14 L43 44 L50 50 Z" fill="#96653F"/>
-            <path d="M50 86 L43 56 L50 50 Z" fill="#C88A5C"/><path d="M50 86 L57 56 L50 50 Z" fill="#96653F"/>
-            <path d="M14 50 L44 43 L50 50 Z" fill="#C88A5C"/><path d="M14 50 L44 57 L50 50 Z" fill="#96653F"/>
-            <path d="M86 50 L56 57 L50 50 Z" fill="#C88A5C"/><path d="M86 50 L56 43 L50 50 Z" fill="#96653F"/>
-            <rect x="47.5" y="47.5" width="5" height="5" fill="#0B2426"/>
+            <path d="M50 6 L57 43 L50 50 Z" fill="#E8AE79"/><path d="M50 6 L43 43 L50 50 Z" fill="#8E5F38"/>
+            <path d="M50 94 L43 57 L50 50 Z" fill="#E8AE79"/><path d="M50 94 L57 57 L50 50 Z" fill="#8E5F38"/>
+            <path d="M6 50 L43 43 L50 50 Z" fill="#E8AE79"/><path d="M6 50 L43 57 L50 50 Z" fill="#8E5F38"/>
+            <path d="M94 50 L57 57 L50 50 Z" fill="#E8AE79"/><path d="M94 50 L57 43 L50 50 Z" fill="#8E5F38"/>
           </svg>
-          <b>Berufswende</b>
+          Berufswende
         </div>
-        <p class="foot__claim">Erst herausfinden, ob es passt. Dann entscheiden.</p>
+        <p>Erst herausfinden, ob es passt. Dann entscheiden.</p>
       </div>
-
-      <div>
-        <h4>Auf dieser Seite</h4>
-        <nav aria-label="Fußnavigation">
-          <a href="#lernen">Worum es geht</a>
-          <a href="#ablauf">Ablauf</a>
-          <a href="#passung">Passung</a>
-          <a href="#wer">Wer dahinter steht</a>
-          <a href="#fragen">Fragen</a>
-        </nav>
-      </div>
-
-      <div>
-        <h4>Nächster Schritt</h4>
-        <p style="margin-top:1.2rem;color:var(--paper-faint);font-size:.92rem;max-width:28ch">Ein Telefonat, das nichts kostet und zu nichts verpflichtet.</p>
-        <p style="margin-top:1.4rem">
-          <a href="#gespraech" class="quiet">
-            Reden wir kurz
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-          </a>
-        </p>
+      <div class="foot-nav">
+        <div>
+          <h4>Auf dieser Seite</h4>
+          <ul>
+            <li><a href="#worum">Worum es geht</a></li>
+            <li><a href="#lernen">Was du lernst</a></li>
+            <li><a href="#ablauf">Ablauf</a></li>
+            <li><a href="#passung">Passung</a></li>
+            <li><a href="#fragen">Fragen</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Nächster Schritt</h4>
+          <ul>
+            <li><a href="#gespraech">Rückruf anfragen</a></li>
+            <li><a href="#wer">Wer dahinter steht</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-
-    <div class="foot__end">
+    <div class="foot-bot">
       <span>© <span id="y">2026</span> Berufswende</span>
       <span>Impressum und Datenschutz folgen vor dem Livegang</span>
     </div>
@@ -1004,144 +1222,128 @@ button{font:inherit;color:inherit}
 <script>
 (function(){
   "use strict";
-  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  document.getElementById("y").textContent = new Date().getFullYear();
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── Header ── */
-  var top = document.getElementById("top");
-  var light = document.getElementById("light");
-  var track = document.getElementById("track");
-  var fill = document.getElementById("fill");
-  var stops = Array.prototype.slice.call(document.querySelectorAll(".stop"));
-  var ticking = false;
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-  function frame(){
-    var y = window.scrollY || 0;
-    top.dataset.lift = y > 20 ? "1" : "0";
-
-    /* Hero-Parallax, sehr langsam */
-    if (light && !still && y < window.innerHeight * 1.2) {
-      light.style.transform = "translate3d(0," + (y * 0.14) + "px,0)";
-    }
-
-    /* Der Weg füllt sich beim Scrollen */
-    if (track) {
-      var r = track.getBoundingClientRect();
-      var anchor = window.innerHeight * 0.62;
-      var done = Math.min(Math.max(anchor - r.top, 0), r.height);
-      fill.style.height = done + "px";
-      stops.forEach(function(s){
-        var sr = s.getBoundingClientRect();
-        s.classList.toggle("on", sr.top < anchor);
-      });
-    }
-    ticking = false;
-  }
-  function onScroll(){
-    if (!ticking){ ticking = true; window.requestAnimationFrame(frame); }
-  }
-  window.addEventListener("scroll", onScroll, {passive:true});
-  window.addEventListener("resize", onScroll, {passive:true});
-  frame();
+  /* ── Header-Zustand ── */
+  var head = document.getElementById('head');
+  function onScroll(){ head.classList.toggle('stuck', window.scrollY > 8); }
+  addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
 
   /* ── Mobiles Menü ── */
-  var tog = document.getElementById("tog");
-  var sheet = document.getElementById("sheet");
-  function setSheet(open){
-    tog.setAttribute("aria-expanded", String(open));
-    tog.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
-    sheet.dataset.open = open ? "1" : "0";
-    document.body.style.overflow = open ? "hidden" : "";
+  var burger = document.getElementById('burger');
+  var mnav = document.getElementById('mnav');
+  function setNav(open){
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    mnav.classList.toggle('open', open);
   }
-  tog.addEventListener("click", function(){
-    setSheet(tog.getAttribute("aria-expanded") !== "true");
+  burger.addEventListener('click', function(){
+    setNav(burger.getAttribute('aria-expanded') !== 'true');
   });
-  sheet.addEventListener("click", function(e){ if (e.target.closest("a")) setSheet(false); });
-  document.addEventListener("keydown", function(e){
-    if (e.key === "Escape" && sheet.dataset.open === "1"){ setSheet(false); tog.focus(); }
+  mnav.addEventListener('click', function(e){ if (e.target.closest('a')) setNav(false); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true'){ setNav(false); burger.focus(); }
   });
 
-  /* ── Reveals mit Versatz ── */
-  var ups = document.querySelectorAll(".up");
-  if (still || !("IntersectionObserver" in window)) {
-    ups.forEach(function(el){ el.classList.add("in"); });
+  /* ── Scroll-Reveal, gestaffelt pro Gruppe ── */
+  var items = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function(el){ el.classList.add('in'); });
   } else {
-    var io = new IntersectionObserver(function(list){
-      list.forEach(function(en, i){
-        if (!en.isIntersecting) return;
-        var el = en.target;
-        setTimeout(function(){ el.classList.add("in"); }, i * 70);
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var sibs = Array.prototype.filter.call(el.parentNode.children, function(n){
+          return n.classList && n.classList.contains('rv');
+        });
+        el.style.transitionDelay = (Math.min(sibs.indexOf(el), 5) * 70) + 'ms';
+        el.classList.add('in');
         io.unobserve(el);
       });
-    }, {rootMargin:"0px 0px -5% 0px", threshold:0.05});
-    ups.forEach(function(el){ io.observe(el); });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+    items.forEach(function(el){ io.observe(el); });
   }
 
   /* ── Aktiver Navigationspunkt ── */
-  var links = Array.prototype.slice.call(document.querySelectorAll(".top nav a"));
-  var targets = links.map(function(a){ return document.querySelector(a.getAttribute("href")); }).filter(Boolean);
-  if ("IntersectionObserver" in window && targets.length) {
-    var spy = new IntersectionObserver(function(list){
-      list.forEach(function(en){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window && targets.length) {
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
         if (!en.isIntersecting) return;
         links.forEach(function(a){
-          a.dataset.here = a.getAttribute("href") === "#" + en.target.id ? "1" : "0";
+          a.dataset.here = a.getAttribute('href') === '#' + en.target.id ? '1' : '0';
         });
       });
-    }, {rootMargin:"-45% 0px -50% 0px"});
+    }, {rootMargin:'-45% 0px -50% 0px'});
     targets.forEach(function(t){ spy.observe(t); });
   }
 
   /* ── FAQ: eine Antwort zur Zeit ── */
-  var qs = document.querySelectorAll(".ask details");
+  var qs = document.querySelectorAll('.faq details');
   qs.forEach(function(d){
-    d.addEventListener("toggle", function(){
+    d.addEventListener('toggle', function(){
       if (!d.open) return;
       qs.forEach(function(o){ if (o !== d) o.open = false; });
     });
   });
 
-  /* ── VSL: spielt, sobald eine Quelle da ist ── */
-  var stage = document.getElementById("stage");
-  var video = document.getElementById("vsl");
-  var play = document.getElementById("play");
-  var state = document.getElementById("vslState");
+  /* ── VSL — greift, sobald die Videodatei eingehängt ist ── */
+  var vsl = document.getElementById('vsl');
+  var unmute = document.getElementById('unmute');
+  if (vsl && unmute) {
+    var sec = document.getElementById('vsl-sec');
 
-  play.addEventListener("click", function(){
-    var hasSource = video.currentSrc || video.querySelector("source");
-    if (!hasSource) {
-      state.textContent = "Das Video wird hier eingebunden, sobald der finale Schnitt vorliegt.";
-      play.animate(
-        [{transform:"translate(-50%,-50%) scale(1)"},
-         {transform:"translate(-50%,-50%) scale(.94)"},
-         {transform:"translate(-50%,-50%) scale(1)"}],
-        {duration:340, easing:"cubic-bezier(.19,1,.22,1)"}
-      );
-      return;
+    unmute.addEventListener('click', function(){
+      var muted = !vsl.muted;
+      vsl.muted = muted;
+      unmute.setAttribute('data-muted', String(muted));
+      unmute.setAttribute('aria-label', muted ? 'Ton einschalten' : 'Ton ausschalten');
+      if (!muted) {
+        /* mit Ton: von vorn, volle Kontrolle, kein Loop */
+        vsl.loop = false;
+        vsl.controls = true;
+        vsl.currentTime = 0;
+        vsl.play();
+        sec.classList.add('playing');
+      }
+    });
+
+    /* stumme Vorschau pausieren, solange sie nicht im Bild ist */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (!vsl.muted) return;
+          if (en.isIntersecting) { vsl.play().catch(function(){}); }
+          else { vsl.pause(); }
+        });
+      }, {threshold:0.25}).observe(vsl);
     }
-    stage.classList.add("is-live");
-    video.controls = true;
-    video.play();
-  });
+  }
 
-  /* ── Formular: Demo, sendet nichts ── */
-  var form = document.getElementById("lead");
-  var said = document.getElementById("said");
-  form.addEventListener("submit", function(e){
+  /* ── Formular: Demo, sendet bewusst nichts ── */
+  var form = document.getElementById('form');
+  var note = document.getElementById('form-note');
+  form.addEventListener('submit', function(e){
     e.preventDefault();
-    var empty = Array.prototype.slice.call(form.querySelectorAll("input[required]"))
+    var empty = Array.prototype.slice.call(form.querySelectorAll('input[required]'))
       .filter(function(i){ return !i.value.trim(); });
     if (empty.length) {
-      said.textContent = "Es fehlt noch etwas: Name, E-Mail und Telefonnummer brauchen wir.";
-      said.dataset.on = "1";
+      note.textContent = 'Es fehlt noch etwas: Name, E-Mail und Telefonnummer brauchen wir.';
+      note.classList.add('hit');
       empty[0].focus();
       return;
     }
-    said.textContent = "Angekommen wäre es jetzt. Das Formular ist noch eine Demo und verschickt nichts.";
-    said.dataset.on = "1";
+    note.textContent = 'Angekommen wäre es jetzt. Das Formular ist noch eine Demo und hat nichts verschickt.';
+    note.classList.add('hit');
   });
 })();
 </script>
+
 </body>
 </html>

@@ -2,56 +2,77 @@
 
 Neuaufbau der Seite [berufswende.de](https://berufswende.de). Eine self-contained `index.html`, kein Build, keine Abhängigkeiten außer Google Fonts.
 
-## Warum neu gebaut wurde
+## Ausrichtung
 
-Die Bestandsseite ist mit **Manus** erzeugt (`manus-analytics.com`, `manus-runtime` im ausgelieferten HTML). Ein erster Versuch, ihre Inhalte 1:1 zu übernehmen und nur das Layout zu verbessern, hat den Generator-Ton konserviert — Formulierungen wie „Vorgesehener Dokumentationsfokus" oder „belastbare Entscheidung" sind niemandes Sprache.
+Die Seite folgt dem Aufbau einer modernen Sales-Landingpage: **VSL groß und zentriert direkt unter dem Hero**, darunter Problem/Lösung, Handwerk, Ablauf, Beweis, Passung und Abschluss. Referenz für die Design-Sprache war master-circle.de.
 
-Diese Fassung übernimmt die **inhaltliche Substanz**, aber keinen einzigen Satz. Alles neu getextet und neu strukturiert.
+**Vorgängerfassung („Cinematic Dusk", Commit `bd3f23b`) ist verworfen.** Sie war typografisch literarisch (Cormorant Garamond), sehr leer und hat das VSL als Nebenelement behandelt.
 
-## Art-Direction: Cinematic Dusk
+## Design-System
 
-Dunkel und filmisch statt technisch. Warme Lichtverläufe wie Fensterlicht zur blauen Stunde, feines Filmkorn über der ganzen Seite, Kupfer sehr sparsam als Akzent. Farben aus dem Logo abgeleitet, Schriften Cormorant Garamond + Manrope mit großem Gradkontrast.
+**Typografie** — keine Serif auf der Seite.
 
-**Kein Bildmaterial.** Der VSL oben ist das einzige Medium der Seite und trägt den Hero. Authentizität entsteht hier über Sprache, Layout-Bruch und Bewegung.
+- `Inter Tight` für Headlines: 700/800, `letter-spacing: -.035em`, bis ~4,9rem
+- `Inter` für Fließtext
+- Headline-Muster: erste Zeile weiß, zweite Zeile in Kupfer
 
-## Bewusst nicht verwendet
+**Farbe** — dunkler und kontrastreicher als zuvor, damit Karten Tiefe bekommen.
 
-Diese Bausteine erzeugen zusammen den Template-Eindruck und kommen auf dieser Seite nicht vor:
+- Grund `#050E10`, Flächen `#081619` / `#0B1E21`
+- Kupfer `#D9975F` als einziger Akzent: Kicker-Dots, Akzentzeile, primärer CTA, Glows
+- Karten `rgba(255,255,255,.022)` auf `1px` Border, `16px` Radius
+- Rollen-Tints: Ausschlusskriterien warm-rötlich, Lösungskarten kupfern
 
-- Uppercase-Micro-Kicker über jeder Sektion
-- Durchnummerierung `01/02/03`, römische Ziffern
-- Hairline-Border-Raster als Standard-Container
-- Statistik-Leisten mit drei Kennzahlen
-- Symmetrische 3er/4er-Kartenraster
-- Kursives Akzentwort in jeder Headline — es gibt genau **eines** auf der ganzen Seite
+**Tiefe und Bewegung** tragen die Qualität, weil es kein Bildmaterial gibt: Karten-Hover mit Lift, gestaffeltes Scroll-Reveal, radiale Glows hinter Hero und VSL, sehr feines Korn. Alles respektiert `prefers-reduced-motion`.
 
 ## Struktur
 
-Neun Sektionen, jede mit einem eigenen Layout-Prinzip statt eines wiederholten Skeletts:
-
-| # | Sektion | Prinzip |
+| # | Sektion | Inhalt |
 |---|---|---|
-| 1 | Hero / VSL | Video als Hauptelement, ein Satz, ein CTA |
-| 2 | Der Moment davor | reiner typografischer Block ohne Container |
-| 3 | Was du lernst | asymmetrische Spalte, Überschrift bricht die Rasterkante |
-| 4 | Wie es abläuft | ein durchlaufender Weg mit scroll-getriebener Linie |
-| 5 | Für wen das nichts ist | Ausschlusskriterien zuerst |
-| 6 | Wer dahinter steht | Platz für die reale Person, offen markiert |
-| 7 | Was hier noch fehlt | Transparenz als Absatz, nicht als Statusraster |
-| 8 | Fragen | FAQ, eine Antwort zur Zeit |
-| 9 | Vorgespräch | Formular |
+| 0 | Topbar | Vorgespräch kostenlos und unverbindlich |
+| 1 | Header | sticky, Wortmarke + Nav + CTA, Burger unter 960px |
+| 2 | Hero | zentriert, zweifarbige Headline, zwei CTAs, Trust-Dots |
+| 3 | **VSL** | groß, zentriert, volle Contentbreite |
+| 4 | Worum es geht | 3× Problem + 1× Lösung als 2×2-Grid |
+| 5 | Was du lernst | vier Feature-Karten mit Icons |
+| 6 | Ablauf | vier Etappen als vertikale Timeline |
+| 7 | Zahlen | drei Stat-Boxen — **Werte offen** |
+| 8 | Stimmen | drei Zitat-Karten — **Inhalte offen** |
+| 9 | Passung | vier Ausschlusskriterien, danach die Einladung |
+| 10 | Wer dahinter steht | ohne Foto, mit ehrlichem Hinweis |
+| 11 | Was noch fehlt | Transparenz über offene Belege |
+| 12 | Fragen | FAQ, eine Antwort zur Zeit |
+| 13 | Vorgespräch | drei Schritte + Formular |
 
 ## Grundsatz für alle künftigen Änderungen
 
-Die Marke positioniert sich ausdrücklich darüber, nichts Unbelegtes zu behaupten. Menschlichere Sprache heißt **nicht** mehr Behauptung: keine erfundenen Zahlen, Referenzen, Biografien, Einkommens- oder Erfolgsversprechen.
+Die Marke positioniert sich ausdrücklich darüber, nichts Unbelegtes zu behaupten. Deshalb hat diese Seite bewusst **keine** Scarcity-Zeile („nur noch X Plätze"), keine erfundenen Kennzahlen, keine Presse-Logos und keine Erfolgs- oder Einkommensversprechen — obwohl die Referenz genau davon lebt.
+
+Wo Belege fehlen, steht ein sichtbarer Platzhalter (`class="slot"`), kein erfundener Inhalt.
+
+## VSL einhängen
+
+In `index.html` beim Block `▼▼ VSL EINHÄNGEN ▼▼`:
+
+1. Kommentar auflösen
+2. `poster="…"` auf ein Standbild setzen
+3. `<source src="…">` auf die Videodatei setzen
+4. den `<div class="vsl-empty">` darunter löschen
+
+Autoplay stumm, der runde Unmute-Button und das Pausieren außerhalb des Sichtfelds laufen dann von selbst. Beim Einschalten des Tons springt das Video auf Anfang und bekommt die nativen Controls.
+
+## Platzhalter befüllen
+
+- **Zahlen:** in den drei `.stat`-Boxen `.stat-v` (Wert) und `.stat-l` (Bezeichnung) setzen, dann `slot` aus der Klasse entfernen
+- **Stimmen:** in den drei `.quote`-Karten Zitat und Name eintragen, dann `slot` entfernen
 
 ## Offen vor dem Livegang
 
-- **VSL** einhängen: `<source>` im `<video id="vsl">` eintragen und `poster` setzen. Play-Button, Overlay und Controls schalten sich dann automatisch um.
-- **Formular** verschickt nichts — Empfänger, Übermittlungsweg und Datenschutzerklärung fehlen.
-- **Anbieter-Person**: Foto und Name in der Sektion „Wer dahinter steht" ergänzen, Hinweistext dort entfernen.
-- **Impressum und Datenschutz** verlinken.
-- **Logo-Original** als SVG/PNG einsetzen (aktuell als Inline-SVG nachgebaut).
+- **VSL** einhängen
+- **Formular** verschickt nichts — Empfänger, Übermittlungsweg und Datenschutzerklärung fehlen
+- **Anbieter-Person**: Foto und Name in „Wer dahinter steht", Hinweistext dort entfernen
+- **Impressum und Datenschutz** verlinken
+- **Logo-Original** als SVG einsetzen (aktuell als Inline-SVG nachgebaut)
 
 ## Lokale Vorschau
 
