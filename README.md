@@ -1,38 +1,57 @@
-# Berufswende — Landingpage (Redesign)
+# Berufswende — Landingpage
 
-Neuaufbau der Seite [berufswende.de](https://berufswende.de). Inhalte und Platzhalter der Bestandsseite wurden **1:1 übernommen** — verändert wurden ausschließlich Aufbau, Hierarchie und visuelle Umsetzung.
+Neuaufbau der Seite [berufswende.de](https://berufswende.de). Eine self-contained `index.html`, kein Build, keine Abhängigkeiten außer Google Fonts.
 
-## Stack
+## Warum neu gebaut wurde
 
-Eine einzelne, self-contained `index.html`. Kein Build, kein Framework, keine Abhängigkeiten. Einzige externe Ressource: Google Fonts (Cormorant Garamond + Manrope — dieselben Schriften wie auf der Bestandsseite).
+Die Bestandsseite ist mit **Manus** erzeugt (`manus-analytics.com`, `manus-runtime` im ausgelieferten HTML). Ein erster Versuch, ihre Inhalte 1:1 zu übernehmen und nur das Layout zu verbessern, hat den Generator-Ton konserviert — Formulierungen wie „Vorgesehener Dokumentationsfokus" oder „belastbare Entscheidung" sind niemandes Sprache.
 
-## Was sich gegenüber der Bestandsseite geändert hat
+Diese Fassung übernimmt die **inhaltliche Substanz**, aber keinen einzigen Satz. Alles neu getextet und neu strukturiert.
 
-**Struktur**
+## Art-Direction: Cinematic Dusk
 
-- Die sechs leeren Nachweis-Kacheln standen bisher direkt unter dem Hero — die erste Aussage der Seite war damit „wir haben noch nichts". Sie sind jetzt in die Sektion **Transparenz** verschoben.
-- An ihrer Stelle steht eine Prinzipien-Leiste mit den drei belegbaren Aussagen der Marke: `1:1` · `IV` · `0 Erfolgsversprechen`.
-- **Trust-Logos** und **Stimmen** waren zwei getrennte Sektionen voller Platzhalter. Beide sind jetzt unter *„Nachweise, die wirklich belegt sind"* gebündelt: offene Nachweisplätze, vorgesehene Falldokumentationen, Haltungs-Statement. Dieselben Platzhalter — aber als Beleg für die Arbeitsweise statt als Leerstelle.
-- **Methodik** rückt direkt hinter „Warum jetzt", weil sie den eigentlichen Substanzblock bildet.
-- Navigation von 4 auf 6 Punkte erweitert (bisher waren nur 4 von 11 Sektionen erreichbar).
-- Reihenfolge: Hero → Warum → Methodik → Eignung → Über uns → Transparenz → Redaktion → Fragen → Vorgespräch.
+Dunkel und filmisch statt technisch. Warme Lichtverläufe wie Fensterlicht zur blauen Stunde, feines Filmkorn über der ganzen Seite, Kupfer sehr sparsam als Akzent. Farben aus dem Logo abgeleitet, Schriften Cormorant Garamond + Manrope mit großem Gradkontrast.
 
-**Gestaltung**
+**Kein Bildmaterial.** Der VSL oben ist das einzige Medium der Seite und trägt den Hero. Authentizität entsteht hier über Sprache, Layout-Bruch und Bewegung.
 
-- Farbwelt konsequent aus dem Logo abgeleitet: Petrol, Kupfer, Sage, Bone.
-- Heller/dunkler Bandwechsel als Lesarhythmus statt durchgehend dunkler Fläche.
-- Hairline-Raster statt Kartenkästen; Serif-Ziffern und römische Zahlen als Struktursignal.
-- Kompass-Stern aus dem Logo als Inline-SVG (Header, Footer, Favicon, Bildplatzhalter).
-- VSL-Platz mit sauberem Rahmen ohne überlappende Boxen; Bildplatzhalter ohne Stockfoto — konsistent zur Aussage, nichts Unbelegtes zu zeigen.
-- Scroll-Reveal, Lesefortschritts-Balken, aktiver Nav-Punkt, Mobile-Drawer, FAQ-Akkordeon.
-- `prefers-reduced-motion` respektiert, Skip-Link, Fokus-Ringe, kein horizontaler Overflow.
+## Bewusst nicht verwendet
+
+Diese Bausteine erzeugen zusammen den Template-Eindruck und kommen auf dieser Seite nicht vor:
+
+- Uppercase-Micro-Kicker über jeder Sektion
+- Durchnummerierung `01/02/03`, römische Ziffern
+- Hairline-Border-Raster als Standard-Container
+- Statistik-Leisten mit drei Kennzahlen
+- Symmetrische 3er/4er-Kartenraster
+- Kursives Akzentwort in jeder Headline — es gibt genau **eines** auf der ganzen Seite
+
+## Struktur
+
+Neun Sektionen, jede mit einem eigenen Layout-Prinzip statt eines wiederholten Skeletts:
+
+| # | Sektion | Prinzip |
+|---|---|---|
+| 1 | Hero / VSL | Video als Hauptelement, ein Satz, ein CTA |
+| 2 | Der Moment davor | reiner typografischer Block ohne Container |
+| 3 | Was du lernst | asymmetrische Spalte, Überschrift bricht die Rasterkante |
+| 4 | Wie es abläuft | ein durchlaufender Weg mit scroll-getriebener Linie |
+| 5 | Für wen das nichts ist | Ausschlusskriterien zuerst |
+| 6 | Wer dahinter steht | Platz für die reale Person, offen markiert |
+| 7 | Was hier noch fehlt | Transparenz als Absatz, nicht als Statusraster |
+| 8 | Fragen | FAQ, eine Antwort zur Zeit |
+| 9 | Vorgespräch | Formular |
+
+## Grundsatz für alle künftigen Änderungen
+
+Die Marke positioniert sich ausdrücklich darüber, nichts Unbelegtes zu behaupten. Menschlichere Sprache heißt **nicht** mehr Behauptung: keine erfundenen Zahlen, Referenzen, Biografien, Einkommens- oder Erfolgsversprechen.
 
 ## Offen vor dem Livegang
 
-- Formular ist eine Demo ohne Datenübermittlung — Empfänger, Übermittlungsweg und Datenschutzerklärung fehlen.
-- Impressum und Datenschutz sind nicht verlinkt.
-- Logo-Original als SVG/PNG einsetzen (aktuell als Inline-SVG nachgebaut).
-- VSL, Bildmaterial, Anbieterbiografie, Nachweise und Falldokumentationen nach Freigabe ergänzen.
+- **VSL** einhängen: `<source>` im `<video id="vsl">` eintragen und `poster` setzen. Play-Button, Overlay und Controls schalten sich dann automatisch um.
+- **Formular** verschickt nichts — Empfänger, Übermittlungsweg und Datenschutzerklärung fehlen.
+- **Anbieter-Person**: Foto und Name in der Sektion „Wer dahinter steht" ergänzen, Hinweistext dort entfernen.
+- **Impressum und Datenschutz** verlinken.
+- **Logo-Original** als SVG/PNG einsetzen (aktuell als Inline-SVG nachgebaut).
 
 ## Lokale Vorschau
 
