@@ -9,7 +9,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23050E10'/%3E%3Cpath d='M50 14 L57 43 L86 50 L57 57 L50 86 L43 57 L14 50 L43 43 Z' fill='%23D9975F'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta property="og:title" content="Berufswende — Erst herausfinden, ob es passt.">
+<meta property="og:description" content="Online-Beratung lernen, neben dem Job. Das Vorgespräch kostet nichts und verpflichtet zu nichts.">
+<!-- absolute URL nötig, damit Vorschaubilder in Chats greifen — beim Umzug auf berufswende.de anpassen -->
+<meta property="og:image" content="https://teghnoor.github.io/berufswende-website/logo.png">
+<meta property="og:type" content="website">
 
 <style>
 /* ═══════════════════════════════════════════════════════════
@@ -215,18 +221,9 @@ button,input{font:inherit;color:inherit}
   height:66px;
 }
 
-.brand{
-  display:inline-flex;
-  align-items:center;
-  gap:.55rem;
-  font-family:var(--display);
-  font-weight:700;
-  font-size:.94rem;
-  letter-spacing:.11em;
-  text-transform:uppercase;
-  flex:none;
-}
-.brand svg{width:24px;height:24px;flex:none}
+/* Wortmarke — Originaldatei, nicht nachgebaut */
+.brand{display:inline-flex;align-items:center;flex:none}
+.brand img{height:38px;width:auto}
 
 .nav{display:flex;gap:.3rem;margin-inline:auto}
 .nav a{
@@ -679,7 +676,8 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
 .foot{border-top:1px solid var(--line);padding:clamp(2.5rem,5vw,3.5rem) 0 2rem}
 .foot-top{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;padding-bottom:2rem}
 .foot-brand{max-width:20rem}
-.foot-brand .brand{margin-bottom:.8rem}
+.foot-brand .brand{margin-bottom:1rem}
+.foot-brand .brand img{height:52px}
 .foot-brand p{font-size:.9rem;color:var(--ink-3);line-height:1.55}
 .foot-nav{display:flex;gap:3rem;flex-wrap:wrap}
 .foot-nav h4{
@@ -789,7 +787,7 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
   .head-in .btn-primary{display:none}
   .marks{gap:.4rem 1rem;font-size:.8rem}
   .topbar{font-size:.76rem}
-  .brand{font-size:.85rem;letter-spacing:.08em}
+  .brand img{height:32px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -808,14 +806,8 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
 
 <header class="head" id="head">
   <div class="wrap head-in">
-    <a href="#oben" class="brand" aria-label="Berufswende, zum Seitenanfang">
-      <svg viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M50 6 L57 43 L50 50 Z" fill="#E8AE79"/><path d="M50 6 L43 43 L50 50 Z" fill="#8E5F38"/>
-        <path d="M50 94 L43 57 L50 50 Z" fill="#E8AE79"/><path d="M50 94 L57 57 L50 50 Z" fill="#8E5F38"/>
-        <path d="M6 50 L43 43 L50 50 Z" fill="#E8AE79"/><path d="M6 50 L43 57 L50 50 Z" fill="#8E5F38"/>
-        <path d="M94 50 L57 57 L50 50 Z" fill="#E8AE79"/><path d="M94 50 L57 43 L50 50 Z" fill="#8E5F38"/>
-      </svg>
-      Berufswende
+    <a href="#oben" class="brand" aria-label="Berufswende Beratung, zum Seitenanfang">
+      <img src="logo.png" alt="Berufswende Beratung" width="894" height="250">
     </a>
 
     <nav class="nav" aria-label="Seitenbereiche">
@@ -1260,13 +1252,7 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
     <div class="foot-top">
       <div class="foot-brand">
         <div class="brand">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M50 6 L57 43 L50 50 Z" fill="#E8AE79"/><path d="M50 6 L43 43 L50 50 Z" fill="#8E5F38"/>
-            <path d="M50 94 L43 57 L50 50 Z" fill="#E8AE79"/><path d="M50 94 L57 57 L50 50 Z" fill="#8E5F38"/>
-            <path d="M6 50 L43 43 L50 50 Z" fill="#E8AE79"/><path d="M6 50 L43 57 L50 50 Z" fill="#8E5F38"/>
-            <path d="M94 50 L57 57 L50 50 Z" fill="#E8AE79"/><path d="M94 50 L57 43 L50 50 Z" fill="#8E5F38"/>
-          </svg>
-          Berufswende
+          <img src="logo.png" alt="Berufswende Beratung" width="894" height="250" loading="lazy">
         </div>
         <p>Erst herausfinden, ob es passt. Dann entscheiden.</p>
       </div>

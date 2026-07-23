@@ -89,7 +89,15 @@ Wartezeit ändern: `MODAL_DELAY` im Script (Millisekunden). Der Merker liegt in
 - **Formular** verschickt nichts — Empfänger, Übermittlungsweg und Datenschutzerklärung fehlen
 - **Anbieter-Person**: Foto und Name in „Wer dahinter steht", Hinweistext dort entfernen
 - **Impressum und Datenschutz** verlinken
-- **Logo-Original** als SVG einsetzen (aktuell als Inline-SVG nachgebaut)
+
+## Assets
+
+- `logo.png` — Originaldatei `Berufswende_Logo_Farbig_Invers_Transparent.png`, auf den Inhalt
+  getrimmt und auf 894×250 gerechnet. Helle Variante, gehört auf dunklen Grund.
+- `icon.png` — der Kompass-Kachel aus derselben Datei, 512×512. Favicon und Apple-Touch-Icon.
+
+Das `og:image` zeigt auf die absolute GitHub-Pages-URL, damit Vorschaubilder in Chats greifen.
+**Beim Umzug auf berufswende.de anpassen.**
 
 ## Lokale Vorschau
 
