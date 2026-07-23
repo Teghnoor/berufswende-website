@@ -74,6 +74,15 @@ gestrichelte Rand und die gedämpfte Schrift, und die Karte sieht fertig aus.
 Eine Kennzahlen-Sektion gibt es bewusst nicht — belegbare Zahlen liegen nicht vor,
 und erfundene sind ausgeschlossen.
 
+## Einladungs-Fenster
+
+Ein Modal öffnet sich **einmal pro Sitzung nach 30 Sekunden** und lädt zum Vorgespräch ein.
+Es erscheint bewusst nicht, wenn der Besucher das Formular ohnehin gerade im Bild hat oder
+es schon abgeschickt hat. Schließbar über X, „Erstmal weiterlesen", Escape oder Klick daneben.
+
+Wartezeit ändern: `MODAL_DELAY` im Script (Millisekunden). Der Merker liegt in
+`sessionStorage` unter `bw-einladung-gesehen` — nach einem neuen Tab erscheint es wieder.
+
 ## Offen vor dem Livegang
 
 - **VSL** einhängen

@@ -695,6 +695,70 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
   font-size:.83rem;color:var(--ink-4);
 }
 
+/* ─── Einladungs-Fenster ─────────────────────────────────── */
+
+.modal{
+  position:fixed;inset:0;z-index:150;
+  display:grid;place-items:center;
+  padding:var(--pad);
+  background:rgb(3 8 9 / .72);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;
+  transition:opacity .4s var(--ease),visibility .4s;
+}
+.modal.open{opacity:1;visibility:visible}
+
+.modal-box{
+  position:relative;
+  width:min(30rem,100%);
+  padding:clamp(1.8rem,4vw,2.6rem);
+  text-align:center;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgb(217 151 95 / .13),transparent 62%),
+    linear-gradient(170deg,#0C2124,#071417);
+  border:1px solid var(--line-hi);
+  border-radius:var(--radius);
+  box-shadow:0 40px 90px -25px rgb(0 0 0 / .9);
+  transform:translateY(14px) scale(.98);
+  transition:transform .45s var(--ease);
+}
+.modal.open .modal-box{transform:none}
+
+.modal-box .kicker{margin-bottom:1rem}
+.modal-box .d3{margin-bottom:.8rem}
+.modal-box .body{font-size:.97rem;margin-bottom:1.6rem}
+.modal-box .btn{width:100%}
+
+.modal-later{
+  display:block;
+  width:100%;
+  margin-top:.9rem;
+  padding:.5rem;
+  background:none;border:none;
+  font-size:.88rem;color:var(--ink-4);
+  cursor:pointer;
+  transition:color .2s;
+}
+.modal-later:hover{color:var(--ink-2)}
+
+.modal-x{
+  position:absolute;top:.85rem;right:.85rem;
+  width:34px;height:34px;
+  display:grid;place-items:center;
+  background:rgb(255 255 255 / .05);
+  border:1px solid var(--line);
+  border-radius:9px;
+  cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+.modal-x:hover{background:rgb(255 255 255 / .09);border-color:var(--line-hi)}
+.modal-x svg{width:14px;height:14px;stroke:var(--ink-2);stroke-width:2;stroke-linecap:round}
+
+@media (prefers-reduced-motion:reduce){
+  .modal-box{transform:none}
+}
+
 /* ─── Scroll-Reveal ──────────────────────────────────────── */
 
 .rv{opacity:0;transform:translateY(18px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
@@ -1233,6 +1297,30 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
   </div>
 </footer>
 
+<!-- ══ EINLADUNGS-FENSTER ══
+     Öffnet sich einmal pro Sitzung nach MODAL_DELAY (unten im Script).
+     Nicht, wenn das Formular gerade ohnehin im Bild ist oder schon abgeschickt wurde. -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-h" hidden>
+  <div class="modal-box">
+    <button class="modal-x" id="modal-x" type="button" aria-label="Fenster schließen">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor"/></svg>
+    </button>
+
+    <span class="kicker">Nächster Schritt</span>
+    <h2 class="d3" id="modal-h">Sollen wir kurz telefonieren?</h2>
+    <p class="body">
+      Das Vorgespräch kostet nichts und verpflichtet zu nichts. Du erzählst, wo du stehst,
+      und wir sagen dir ehrlich, ob das hier zu dir passt.
+    </p>
+
+    <a href="#gespraech" class="btn btn-primary btn-lg" id="modal-cta">
+      Vorgespräch sichern
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button class="modal-later" id="modal-later" type="button">Erstmal weiterlesen</button>
+  </div>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -1343,6 +1431,8 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
   /* ── Formular: Demo, sendet bewusst nichts ── */
   var form = document.getElementById('form');
   var note = document.getElementById('form-note');
+  var abgeschickt = false;
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var empty = Array.prototype.slice.call(form.querySelectorAll('input[required]'))
@@ -1353,8 +1443,71 @@ details[open] .faq-ico::after{transform:translate(-50%,-50%) rotate(90deg);opaci
       empty[0].focus();
       return;
     }
+    abgeschickt = true;
     note.textContent = 'Angekommen wäre es jetzt. Das Formular ist noch eine Demo und hat nichts verschickt.';
     note.classList.add('hit');
+  });
+
+  /* ── Einladungs-Fenster ── */
+  var MODAL_DELAY = 30000;          /* Wartezeit in Millisekunden */
+  var MODAL_KEY = 'bw-einladung-gesehen';
+
+  var modal = document.getElementById('modal');
+  var modalBox = modal.querySelector('.modal-box');
+  var zuletztFokussiert = null;
+
+  function formularImBild(){
+    var r = form.getBoundingClientRect();
+    return r.top < innerHeight && r.bottom > 0;
+  }
+
+  function modalAuf(){
+    if (modal.classList.contains('open')) return;
+    zuletztFokussiert = document.activeElement;
+    modal.hidden = false;
+    /* ein Frame warten, damit der Übergang greift */
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ modal.classList.add('open'); });
+    });
+    document.body.style.overflow = 'hidden';
+    document.getElementById('modal-cta').focus();
+    try { sessionStorage.setItem(MODAL_KEY, '1'); } catch(err){}
+  }
+
+  function modalZu(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(function(){ modal.hidden = true; }, 400);
+    if (zuletztFokussiert && zuletztFokussiert.focus) zuletztFokussiert.focus();
+  }
+
+  var schonGesehen = false;
+  try { schonGesehen = sessionStorage.getItem(MODAL_KEY) === '1'; } catch(err){}
+
+  if (!schonGesehen) {
+    setTimeout(function(){
+      /* nicht stören, wenn er ohnehin schon beim Formular ist oder es abgeschickt hat */
+      if (abgeschickt || formularImBild()) return;
+      modalAuf();
+    }, MODAL_DELAY);
+  }
+
+  document.getElementById('modal-x').addEventListener('click', modalZu);
+  document.getElementById('modal-later').addEventListener('click', modalZu);
+  document.getElementById('modal-cta').addEventListener('click', modalZu);
+  modal.addEventListener('click', function(e){ if (e.target === modal) modalZu(); });
+
+  document.addEventListener('keydown', function(e){
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape') { modalZu(); return; }
+    /* Fokus im Fenster halten */
+    if (e.key === 'Tab') {
+      var f = modalBox.querySelectorAll('a[href],button');
+      if (!f.length) return;
+      var erste = f[0], letzte = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === erste) { e.preventDefault(); letzte.focus(); }
+      else if (!e.shiftKey && document.activeElement === letzte) { e.preventDefault(); erste.focus(); }
+    }
   });
 })();
 </script>
